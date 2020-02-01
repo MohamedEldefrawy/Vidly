@@ -11,8 +11,8 @@ namespace Vidly.Controllers
     {
         List<Movie> movies = new List<Movie>
             {
-                 new Movie {ID = 1, Name = "Shrek" },
-                 new Movie {ID = 2,Name="john Wick"}
+                 //new Movie {ID = 1, Name = "Shrek" },
+                 //new Movie {ID = 2,Name="john Wick"}
             };
 
         // GET: Movies

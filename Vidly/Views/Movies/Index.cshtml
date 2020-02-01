@@ -4,17 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Movies</h1>
-<ul class="list-group alert-heading">
-    <li class="list-group-item">
-        <p class="font-weight-bold">Movies</p>
-    </li>
-    @foreach (var movie in Model)
+<div class="padding-top-10">
+    <h1>Movies</h1>
+    @if (Model.Count > 0)
     {
-        string name = movie.Name;
+        <ul class="list-group alert-heading">
+            <li class="list-group-item">
+                <p class="font-weight-bold">Movies</p>
+            </li>
+            @foreach (var movie in Model)
+            {
+                string name = movie.Name;
 
-        <li class="list-group-item">
-            @Html.ActionLink(name, "Details", new { id = movie.ID })
-        </li>
+                <li class="list-group-item">
+                    @Html.ActionLink(name, "Details", new { id = movie.ID })
+                </li>
+            }
+        </ul>
     }
-</ul>
+    else
+    {
+        <p class="text-muted"> We don't have any Movies yet.</p>
+    }
+
+</div>
+
