@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Movies</h1>
+<ul class="list-group alert-heading">
+    <li class="list-group-item">
+        <p class="font-weight-bold">Movies</p>
+    </li>
+    @foreach (var movie in Model)
+    {
+        string name = movie.Name;
+
+        <li class="list-group-item">
+            @Html.ActionLink(name, "Details", new { id = movie.ID })
+        </li>
+    }
+</ul>

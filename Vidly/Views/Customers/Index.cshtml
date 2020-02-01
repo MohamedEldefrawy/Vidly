@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Customers</h1>
+<ul class="list-group alert-heading">
+    <li class="list-group-item">
+        <p class="font-weight-bold"> Customer</p>
+    </li>
+    @foreach (var customer in Model)
+    {
+        string name = customer.Name;
+
+        <li class="list-group-item">
+            @Html.ActionLink(name, "Details", new { id = customer.ID })
+        </li>
+    }
+</ul>
