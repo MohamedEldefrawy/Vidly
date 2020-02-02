@@ -4,30 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.BL.Domain;
+using Vidly.DAL;
+using Vidly.DAL.UOW;
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        List<Movie> movies = new List<Movie>
-        {
-            //new Movie {ID = 1, Name = "Shrek" },
-            //new Movie {ID = 2,Name="john Wick"}
-        };
 
+        private readonly UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
         // GET: Movies
         public ActionResult Index()
         {
 
-            return View(movies.ToList());
+            return View(UOW.MovieRepository.GetAll());
         }
 
         public ActionResult Details(int id)
         {
             try
             {
-                var selectedMovie = movies.Where(m => m.ID == id).SingleOrDefault();
-                return View(selectedMovie);
+                return View(UOW.MovieRepository.Find(m => m.ID == id).ToList());
             }
             catch (InvalidOperationException e)
             {

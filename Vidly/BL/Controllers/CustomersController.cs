@@ -4,32 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.BL.Domain;
+using Vidly.DAL;
+using Vidly.DAL.UOW;
 
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
 
-        List<Customer> customers = new List<Customer>
-            {
-                new Customer{ID = 1,Name = "Mohamed"},
-                new Customer{ID = 2,Name="Ahmed"}
-        };
+        UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
 
         // GET: Customers
         public ActionResult Index()
         {
 
 
-            return View(customers.ToList());
+            return View(UOW.CustomerRepository.GetAll());
         }
 
         public ActionResult Details(int id)
         {
             try
             {
-                var selectedcustomer = customers.Where(c => c.ID == id).Single();
-                return View(selectedcustomer);
+                return View(UOW.CustomerRepository.Find(c => c.ID == id).ToList());
 
             }
             catch (ArgumentNullException e)

@@ -142,9 +142,9 @@
     <Compile Include="BL\Repositories\MovieRepository.cs" />
     <Compile Include="BL\Repositories\Repository.cs" />
     <Compile Include="BL\UOW\IUnitOFWork.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="BL\Controllers\CustomersController.cs" />
+    <Compile Include="BL\Controllers\HomeController.cs" />
+    <Compile Include="BL\Controllers\MoviesController.cs" />
     <Compile Include="DAL\UOW\UnitOFWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -154,6 +154,10 @@
     <Compile Include="Migrations\202002012004416_InitialMigration.cs" />
     <Compile Include="Migrations\202002012004416_InitialMigration.Designer.cs">
       <DependentUpon>202002012004416_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002022036272_CreatingCustomerAndMoviesTabels.cs" />
+    <Compile Include="Migrations\202002022036272_CreatingCustomerAndMoviesTabels.Designer.cs">
+      <DependentUpon>202002022036272_CreatingCustomerAndMoviesTabels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +228,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002012004416_InitialMigration.resx">
       <DependentUpon>202002012004416_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002022036272_CreatingCustomerAndMoviesTabels.resx">
+      <DependentUpon>202002022036272_CreatingCustomerAndMoviesTabels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
