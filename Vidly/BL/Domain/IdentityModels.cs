@@ -2,7 +2,6 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,19 +16,5 @@ namespace Vidly.BL.Domain
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             return userIdentity;
         }
-    }
-
-    public class VidlyDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public VidlyDbContext()
-            : base("VidlyDBContext")
-        {
-
-        }
-
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-
-
     }
 }

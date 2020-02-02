@@ -13,6 +13,7 @@ namespace Vidly.DAL.UOW
         public ICustomerRepository CustomerRepository { get; private set; }
 
         public IMovieRepository MovieRepository { get; private set; }
+
         private readonly VidlyDbContext VidlyModel;
 
         public UnitOFWork(VidlyDbContext VidlyModel)

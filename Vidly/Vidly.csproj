@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\Domain\IdentityModels.cs" />
     <Compile Include="BL\Domain\MemmberShipType.cs" />
+    <Compile Include="DAL\VidlyDbContext.cs" />
     <Compile Include="BL\Repositories\CustomerRepository.cs" />
     <Compile Include="BL\Repositories\ICustomerRepository.cs" />
     <Compile Include="BL\Repositories\IMovieRepository.cs" />
