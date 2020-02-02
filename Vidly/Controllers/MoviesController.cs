@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Vidly.Models;
+using Vidly.BL.Domain;
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
         List<Movie> movies = new List<Movie>
-            {
-                 //new Movie {ID = 1, Name = "Shrek" },
-                 //new Movie {ID = 2,Name="john Wick"}
-            };
+        {
+            //new Movie {ID = 1, Name = "Shrek" },
+            //new Movie {ID = 2,Name="john Wick"}
+        };
 
         // GET: Movies
         public ActionResult Index()
