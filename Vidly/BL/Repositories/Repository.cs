@@ -22,13 +22,32 @@ namespace Vidly.BL.Repositories
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, string children)
         {
-            return this.context.Set<TEntity>().Include(children).Where<TEntity>(predicate);
+            if (children.ToUpper() == "NO")
+            {
+                return this.context.Set<TEntity>().Where<TEntity>(predicate);
+
+            }
+            else
+            {
+                return this.context.Set<TEntity>().Include(children).Where<TEntity>(predicate);
+
+            }
         }
 
 
         public List<TEntity> GetAll(string children)
         {
-            return this.context.Set<TEntity>().Include(children).ToList<TEntity>();
+            if (children.ToUpper() == "NO")
+            {
+                return this.context.Set<TEntity>().ToList<TEntity>();
+
+            }
+
+            else
+            {
+                return this.context.Set<TEntity>().Include(children).ToList<TEntity>();
+
+            }
         }
 
         public void Remove(TEntity entity)
