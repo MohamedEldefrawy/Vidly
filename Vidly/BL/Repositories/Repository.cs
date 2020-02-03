@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
-using Vidly.BL.Domain;
 using Vidly.DAL;
 
 namespace Vidly.BL.Repositories
@@ -23,15 +20,15 @@ namespace Vidly.BL.Repositories
             this.context.Set<TEntity>().Add(entity);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, string children)
         {
-            return this.context.Set<TEntity>().Where<TEntity>(predicate);
+            return this.context.Set<TEntity>().Include(children).Where<TEntity>(predicate);
         }
 
 
-        public List<TEntity> GetAll()
+        public List<TEntity> GetAll(string children)
         {
-            return this.context.Set<TEntity>().ToList<TEntity>();
+            return this.context.Set<TEntity>().Include(children).ToList<TEntity>();
         }
 
         public void Remove(TEntity entity)

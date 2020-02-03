@@ -16,14 +16,14 @@ namespace Vidly.Controllers
         {
 
 
-            return View(UOW.CustomerRepository.GetAll());
+            return View(UOW.CustomerRepository.GetAll("MemberShipType"));
         }
 
         public ActionResult Details(int id)
         {
             try
             {
-                return View(UOW.CustomerRepository.Find(c => c.ID == id).ToList());
+                return View(UOW.CustomerRepository.Find(c => c.ID == id, "MemberShipType").ToList());
 
             }
             catch (ArgumentNullException e)

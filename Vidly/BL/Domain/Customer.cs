@@ -11,6 +11,5 @@ namespace Vidly.BL.Domain
         public string Name { get; set; }
         public bool IsSubscribedToNewsetter { get; set; }
         public MemberShipType MemberShipType { get; set; }
-        public byte MemberShipID { get; set; }
     }
 }

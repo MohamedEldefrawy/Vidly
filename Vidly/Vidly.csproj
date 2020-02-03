@@ -163,6 +163,14 @@
     <Compile Include="Migrations\202002022117071_SeedingMemmberShipTypeTable.Designer.cs">
       <DependentUpon>202002022117071_SeedingMemmberShipTypeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002022125363_AddNameToMemmberShipType.cs" />
+    <Compile Include="Migrations\202002022125363_AddNameToMemmberShipType.Designer.cs">
+      <DependentUpon>202002022125363_AddNameToMemmberShipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002022131033_RemoveDuplicatedFKFromCustomers.cs" />
+    <Compile Include="Migrations\202002022131033_RemoveDuplicatedFKFromCustomers.Designer.cs">
+      <DependentUpon>202002022131033_RemoveDuplicatedFKFromCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -238,6 +246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002022117071_SeedingMemmberShipTypeTable.resx">
       <DependentUpon>202002022117071_SeedingMemmberShipTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002022125363_AddNameToMemmberShipType.resx">
+      <DependentUpon>202002022125363_AddNameToMemmberShipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002022131033_RemoveDuplicatedFKFromCustomers.resx">
+      <DependentUpon>202002022131033_RemoveDuplicatedFKFromCustomers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -34,21 +34,26 @@ namespace Vidly.Migrations
                     Id = 1,
                     DiscountRate = 0,
                     DurationInMonths = 0,
-                    SignUpFee = 0
+                    SignUpFee = 0,
+                    Name = "Pay as you go"
+
                 },
             new MemberShipType
             {
                 Id = 2,
                 DiscountRate = 10,
                 SignUpFee = 30,
-                DurationInMonths = 1
+                DurationInMonths = 1,
+                Name = "Monthly"
             },
             new MemberShipType
             {
                 Id = 3,
                 DiscountRate = 15,
                 DurationInMonths = 3,
-                SignUpFee = 90
+                SignUpFee = 90,
+                Name = "Quarterly"
+
             },
 
             new MemberShipType
@@ -56,7 +61,8 @@ namespace Vidly.Migrations
                 Id = 4,
                 DiscountRate = 20,
                 DurationInMonths = 12,
-                SignUpFee = 300
+                SignUpFee = 300,
+                Name = "Yearly"
             }
 
             );

@@ -14,14 +14,14 @@ namespace Vidly.Controllers
         public ActionResult Index()
         {
 
-            return View(UOW.MovieRepository.GetAll());
+            return View(UOW.MovieRepository.GetAll(null));
         }
 
         public ActionResult Details(int id)
         {
             try
             {
-                return View(UOW.MovieRepository.Find(m => m.ID == id).ToList());
+                return View(UOW.MovieRepository.Find(m => m.ID == id, null).ToList());
             }
             catch (InvalidOperationException e)
             {
