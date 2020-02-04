@@ -1,43 +1,60 @@
-﻿.padding-top-0 {
-    padding-top: 0;
+﻿.p-top-0 {
+    padding-top: 0 !important;
 }
 
-.padding-top-1 {
-    padding-top: 1px;
+.p-top-1 {
+    padding-top: 1px !important;
 }
 
-.padding-top-2 {
-    padding-top: 2px;
+.p-top-2 {
+    padding-top: 2px !important;
 }
 
-.padding-top-3 {
-    padding-top: 3px;
+.p-top-3 {
+    padding-top: 3px !important;
 }
 
-.padding-top-4 {
-    padding-top: 4px;
+.p-top-4 {
+    padding-top: 4px !important;
 }
 
-.padding-top-5 {
-    padding-top: 5px;
+.p-top-5 {
+    padding-top: 5px !important;
 }
 
-.padding-top-6 {
-    padding-top: 6px;
+.p-top-6 {
+    padding-top: 6px !important;
 }
 
-.padding-top-7 {
-    padding-top: 7px;
+.p-top-7 {
+    padding-top: 7px !important;
 }
 
-.padding-top-8 {
-    padding-top: 8px;
+.p-top-8 {
+    padding-top: 8px !important;
 }
 
-.padding-top-9 {
-    padding-top: 9px;
+.p-top-9 {
+    padding-top: 9px !important;
 }
 
-.padding-top-10 {
-    padding-top: 10px;
+.p-top-10 {
+    padding-top: 10px !important;
+}
+
+.p-bottom-0 {
+    padding-bottom: 0 !important;
+}
+
+.p-left-0 {
+    padding-left: 0 !important;
+}
+
+.customer-info {
+    font-size: 17px;
+    color: #716f6f;
+}
+
+.m-l-35 {
+    margin-left: 35px !important;
 }

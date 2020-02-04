@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using Vidly.BL.Domain;
+using Vidly.DAL.Configs;
 
 namespace Vidly.DAL
 {
@@ -18,6 +19,8 @@ namespace Vidly.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Configurations.Add(new CustomerConfigurations());
+
         }
 
     }

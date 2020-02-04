@@ -23,7 +23,7 @@ namespace Vidly.Controllers
         {
             try
             {
-                return View(UOW.CustomerRepository.Find(c => c.ID == id, "MemberShipType").ToList());
+                return View(UOW.CustomerRepository.Find(c => c.ID == id, "MemberShipType").SingleOrDefault());
 
             }
             catch (ArgumentNullException e)

@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\Domain\IdentityModels.cs" />
     <Compile Include="BL\Domain\MemmberShipType.cs" />
+    <Compile Include="DAL\Configs\CustomerConfigurations.cs" />
     <Compile Include="DAL\VidlyDbContext.cs" />
     <Compile Include="BL\Repositories\CustomerRepository.cs" />
     <Compile Include="BL\Repositories\ICustomerRepository.cs" />
@@ -170,6 +171,14 @@
     <Compile Include="Migrations\202002022131033_RemoveDuplicatedFKFromCustomers.cs" />
     <Compile Include="Migrations\202002022131033_RemoveDuplicatedFKFromCustomers.Designer.cs">
       <DependentUpon>202002022131033_RemoveDuplicatedFKFromCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002041932324_AddBirthDateToCustomerAndCreateCustomerConfiguration.cs" />
+    <Compile Include="Migrations\202002041932324_AddBirthDateToCustomerAndCreateCustomerConfiguration.Designer.cs">
+      <DependentUpon>202002041932324_AddBirthDateToCustomerAndCreateCustomerConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002041942509_changeBirthDateTypeInDBToDate.cs" />
+    <Compile Include="Migrations\202002041942509_changeBirthDateTypeInDBToDate.Designer.cs">
+      <DependentUpon>202002041942509_changeBirthDateTypeInDBToDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002022131033_RemoveDuplicatedFKFromCustomers.resx">
       <DependentUpon>202002022131033_RemoveDuplicatedFKFromCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041932324_AddBirthDateToCustomerAndCreateCustomerConfiguration.resx">
+      <DependentUpon>202002041932324_AddBirthDateToCustomerAndCreateCustomerConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041942509_changeBirthDateTypeInDBToDate.resx">
+      <DependentUpon>202002041942509_changeBirthDateTypeInDBToDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
