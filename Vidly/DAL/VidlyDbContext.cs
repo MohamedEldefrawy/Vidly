@@ -15,11 +15,13 @@ namespace Vidly.DAL
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.Add(new CustomerConfigurations());
+            modelBuilder.Configurations.Add(new MoviesConfigurations());
 
         }
 

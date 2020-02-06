@@ -132,9 +132,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BL\Domain\Genre.cs" />
     <Compile Include="BL\Domain\IdentityModels.cs" />
     <Compile Include="BL\Domain\MemmberShipType.cs" />
     <Compile Include="DAL\Configs\CustomerConfigurations.cs" />
+    <Compile Include="DAL\Configs\MoviesConfigurations.cs" />
     <Compile Include="DAL\VidlyDbContext.cs" />
     <Compile Include="BL\Repositories\CustomerRepository.cs" />
     <Compile Include="BL\Repositories\ICustomerRepository.cs" />
@@ -179,6 +181,18 @@
     <Compile Include="Migrations\202002041942509_changeBirthDateTypeInDBToDate.cs" />
     <Compile Include="Migrations\202002041942509_changeBirthDateTypeInDBToDate.Designer.cs">
       <DependentUpon>202002041942509_changeBirthDateTypeInDBToDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002061948416_CreteGenreTable.cs" />
+    <Compile Include="Migrations\202002061948416_CreteGenreTable.Designer.cs">
+      <DependentUpon>202002061948416_CreteGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002061958193_AddNewMovieColumns.cs" />
+    <Compile Include="Migrations\202002061958193_AddNewMovieColumns.Designer.cs">
+      <DependentUpon>202002061958193_AddNewMovieColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002062001458_PopulateGenreTable.cs" />
+    <Compile Include="Migrations\202002062001458_PopulateGenreTable.Designer.cs">
+      <DependentUpon>202002062001458_PopulateGenreTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,6 +281,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002041942509_changeBirthDateTypeInDBToDate.resx">
       <DependentUpon>202002041942509_changeBirthDateTypeInDBToDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002061948416_CreteGenreTable.resx">
+      <DependentUpon>202002061948416_CreteGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002061958193_AddNewMovieColumns.resx">
+      <DependentUpon>202002061958193_AddNewMovieColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002062001458_PopulateGenreTable.resx">
+      <DependentUpon>202002062001458_PopulateGenreTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,9 +1,31 @@
-﻿
+﻿@model Vidly.BL.Domain.Movie
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="p-5">@Model.Name</h2>
+<div>
+    <h2 class="row p-5 p-bottom-0">@Model.Name</h2>
+    <ul class="row customer-info m-l-35">
+
+        <li class="col-12 p-left-0">
+            <span>Genre: </span>
+            @Model.Genre.name
+        </li>
+        <li class="col-12 p-left-0">
+            <span>Release Date: </span>
+            @Model.ReleaseDate.ToString().Split(' ')[0]
+        </li>
+        <li class="col-12 p-left-0">
+            <span>Date Added: </span>
+            @Model.DateAdded.ToString().Split(' ')[0]
+        </li>
+        <li class="col-12 p-left-0">
+            <span>Number in Stock: </span>
+            @Model.NumberInStock
+        </li>
+    </ul>
+</div>
+
 
 

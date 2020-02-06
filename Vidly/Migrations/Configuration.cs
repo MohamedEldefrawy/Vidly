@@ -66,6 +66,12 @@ namespace Vidly.Migrations
             }
 
             );
+
+            context.Set<Genre>().AddOrUpdate(
+                new Genre { ID = 1, name = "Action" },
+                new Genre { ID = 2, name = "Comedy" },
+                new Genre { ID = 3, name = "Romance" },
+                new Genre { ID = 4, name = "Family" });
         }
     }
 }
