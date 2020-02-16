@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Vidly.BL.Domain;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -32,6 +34,32 @@ namespace Vidly.Controllers
             {
                 return HttpNotFound();
             }
+        }
+
+        public ActionResult New()
+        {
+            MoviesViewModel moviesView = new MoviesViewModel()
+            {
+                Genres = UOW.GenreRepository.GetAll("No"),
+            };
+
+            return View(moviesView);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Movie movie)
+        {
+            UOW.MovieRepository.Add(new Movie
+            {
+                Name = movie.Name,
+                ReleaseDate = movie.ReleaseDate,
+                NumberInStock = movie.NumberInStock,
+                GenreID = movie.GenreID,
+            });
+
+            UOW.Complete();
+            UOW.Dispose();
+            return RedirectToAction("Index");
         }
     }
 }

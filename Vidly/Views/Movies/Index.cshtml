@@ -6,6 +6,8 @@
 
 <div class="p-50">
     <h1>Movies</h1>
+    @Html.ActionLink("New", "New", null, new { @class = "btn btn-new" })
+
     <table class="table table-bordered" style="font-size:18px;">
         <thead>
             <tr>
@@ -26,7 +28,7 @@
                         <td>
                             @Html.ActionLink(movie.Name, "Details", new { id = movie.ID })
                         </td>
-                        <td>@movie.Genre.name</td>
+                        <td>@movie.Genre.Name</td>
                     </tr>
 
                 }

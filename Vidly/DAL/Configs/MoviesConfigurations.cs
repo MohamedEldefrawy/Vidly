@@ -11,10 +11,14 @@ namespace Vidly.DAL.Configs
     {
         public MoviesConfigurations()
         {
+            HasRequired(m => m.Genre)
+                .WithMany().
+                HasForeignKey(m => m.GenreID);
+
             Property(m => m.NumberInStock)
                 .IsRequired();
             Property(m => m.ReleaseDate)
-                .HasColumnType("Date")
+                .HasColumnType("Date")                
                 .IsRequired();
             Property(m => m.DateAdded)
                 .IsRequired()
@@ -22,6 +26,7 @@ namespace Vidly.DAL.Configs
             Property(m => m.Name)
                 .IsRequired()
                 .HasMaxLength(25);
+            
         }
     }
 }
