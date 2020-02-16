@@ -12,6 +12,9 @@ namespace Vidly.BL.Domain
         public bool IsSubscribedToNewsetter { get; set; }
         public MemberShipType MemberShipType { get; set; }
 
+
+        public byte MemmberShipTypeID { get; set; }
+
         public DateTime? BirthDate { get; set; }
     }
 }

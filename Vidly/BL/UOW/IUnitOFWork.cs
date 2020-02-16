@@ -11,6 +11,7 @@ namespace Vidly.BL.UOW
     {
         ICustomerRepository CustomerRepository { get; }
         IMovieRepository MovieRepository { get; }
+        IMemmberShipTypeRepository MemmberShipTypeRepository { get; }
         int Complete();
     }
 }

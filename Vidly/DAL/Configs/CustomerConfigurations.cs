@@ -11,10 +11,15 @@ namespace Vidly.DAL.Configs
     {
         public CustomerConfigurations()
         {
+            HasRequired(c => c.MemberShipType)
+                .WithMany()
+                .HasForeignKey(c => c.MemmberShipTypeID);
+
             Property(c => c.BirthDate)
                 .IsOptional()
                 .HasColumnType("Date");
 
+            Property(c => c.MemmberShipTypeID).HasColumnName("MemberShipID");
 
         }
     }

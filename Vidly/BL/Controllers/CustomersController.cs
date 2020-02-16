@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Vidly.BL.Domain;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
 
-        UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
+        private readonly UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
 
         // GET: Customers
         public ActionResult Index()
@@ -36,6 +38,35 @@ namespace Vidly.Controllers
                 return HttpNotFound();
             }
 
+        }
+
+        public ActionResult New()
+        {
+            var ViewModel = new CustomerViewModel
+            {
+                MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+
+            };
+
+            UOW.Dispose();
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            UOW.CustomerRepository.Add(new Customer
+            {
+                BirthDate = customer.BirthDate,
+                IsSubscribedToNewsetter = customer.IsSubscribedToNewsetter,
+                MemmberShipTypeID = customer.MemmberShipTypeID,
+                Name = customer.Name
+            });
+
+            UOW.Complete();
+            UOW.Dispose();
+
+            return RedirectToAction("Index", "Customers");
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Vidly.DAL.UOW
 
         public IMovieRepository MovieRepository { get; private set; }
 
+        public IMemmberShipTypeRepository MemmberShipTypeRepository { get; set; }
+
         private readonly VidlyDbContext VidlyModel;
 
         public UnitOFWork(VidlyDbContext VidlyModel)
@@ -21,6 +23,7 @@ namespace Vidly.DAL.UOW
             this.VidlyModel = VidlyModel;
             this.CustomerRepository = new CustomerRepository(VidlyModel);
             this.MovieRepository = new MovieRepository(VidlyModel);
+            this.MemmberShipTypeRepository = new MemmberShipTypeRepository(VidlyModel);
         }
 
         public int Complete()
