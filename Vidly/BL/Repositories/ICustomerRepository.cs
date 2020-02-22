@@ -9,6 +9,6 @@ namespace Vidly.BL.Repositories
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-
+        void Update(Customer customer);
     }
 }

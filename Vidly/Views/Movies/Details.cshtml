@@ -1,31 +1,30 @@
-﻿@model Vidly.BL.Domain.Movie
+﻿@model Vidly.ViewModels.MoviesViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <h2 class="row p-5 p-bottom-0">@Model.Name</h2>
-    <ul class="row customer-info m-l-35">
+<div class="p-top-10">
 
-        <li class="col-12 p-left-0">
-            <span>Genre: </span>
-            @Model.Genre.name
-        </li>
-        <li class="col-12 p-left-0">
-            <span>Release Date: </span>
-            @Model.ReleaseDate.ToString().Split(' ')[0]
-        </li>
-        <li class="col-12 p-left-0">
-            <span>Date Added: </span>
-            @Model.DateAdded.ToString().Split(' ')[0]
-        </li>
-        <li class="col-12 p-left-0">
-            <span>Number in Stock: </span>
-            @Model.NumberInStock
-        </li>
-    </ul>
+    <h2>Edit Movie</h2>
+
+    @using (Html.BeginForm("Update", "Movies", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Movie.Name)
+            @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+
+            @Html.LabelFor(m => m.Movie.ReleaseDate)
+            @Html.TextBoxFor(m => m.Movie.ReleaseDate, new { @class = "form-control" })
+
+            @Html.LabelFor(m => m.Genres)
+            @Html.DropDownListFor(m => m.Movie.GenreID, new SelectList(Model.Genres, "ID", "Name")
+            , "Select Genre", new { @class = "form-control" })
+
+            @Html.HiddenFor(m => m.Movie.ID)
+
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+
 </div>
-
-
-

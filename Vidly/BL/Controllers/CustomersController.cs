@@ -25,7 +25,13 @@ namespace Vidly.Controllers
         {
             try
             {
-                return View(UOW.CustomerRepository.Find(c => c.ID == id, "MemberShipType").SingleOrDefault());
+                CustomerViewModel customerViewModel = new CustomerViewModel()
+                {
+                    Customer = UOW.CustomerRepository.Find(c => c.ID == id, "MemberShipType").SingleOrDefault(),
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+                };
+
+                return View(customerViewModel);
 
             }
             catch (ArgumentNullException e)
@@ -38,6 +44,16 @@ namespace Vidly.Controllers
                 return HttpNotFound();
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult Update(Customer customer)
+        {
+            UOW.CustomerRepository.Update(customer);
+            UOW.Complete();
+            UOW.Dispose();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult New()

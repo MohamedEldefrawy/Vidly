@@ -1,26 +1,34 @@
-﻿@model Vidly.BL.Domain.Customer
+﻿@model Vidly.ViewModels.CustomerViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <h2 class="row p-5 p-bottom-0">@Model.Name</h2>
-    <ul class="row customer-info m-l-35">
+<div class="p-top-10">
+    <h2>Edit Customer</h2>
 
-        <li class="col-12 p-left-0">
-            <span>Memmbership Type: </span>
-            @Model.MemberShipType.Name
-        </li>
+    @using (Html.BeginForm("Update", "Customers", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.Name)
+            @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
 
-        @if (Model.BirthDate != null)
-        {
-            <li class="col-12 p-left-0">
-                <span>Birthdate: </span>
-                @Model.BirthDate.ToString().Split(' ')[0]
-            </li>
-        }
-    </ul>
+            @Html.LabelFor(c => c.Customer.BirthDate)
+            @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control" })
 
+            @Html.LabelFor(c => c.Customer.MemmberShipTypeID)
+            @Html.DropDownListFor(c => c.Customer.MemmberShipTypeID, new SelectList(Model.MemmberShipTypes, "Id", "Name"), "Select Memmbership"
+            , new { @class = "form-control" })
+
+            <div class="checkbox">
+                <label>Subscribed to Newsletter?</label>
+                @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsetter)
+            </div>
+            @Html.HiddenFor(c => c.Customer.ID)
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
 </div>
 

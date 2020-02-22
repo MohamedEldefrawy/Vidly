@@ -9,6 +9,6 @@ namespace Vidly.BL.Repositories
 {
     public interface IMovieRepository : IRepository<Movie>
     {
-
+        void Update(Movie movie);
     }
 }

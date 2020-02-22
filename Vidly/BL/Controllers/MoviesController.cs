@@ -12,6 +12,7 @@ namespace Vidly.Controllers
     {
 
         private readonly UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
+
         // GET: Movies
         public ActionResult Index()
         {
@@ -23,7 +24,13 @@ namespace Vidly.Controllers
         {
             try
             {
-                return View(UOW.MovieRepository.Find(m => m.ID == id, "Genre").SingleOrDefault());
+                MoviesViewModel moviesViewModel = new MoviesViewModel()
+                {
+                    Movie = UOW.MovieRepository.Find(m => m.ID == id, "Genre").SingleOrDefault(),
+                    Genres = UOW.GenreRepository.GetAll("No")
+                };
+
+                return View(moviesViewModel);
             }
             catch (InvalidOperationException e)
             {
@@ -34,6 +41,25 @@ namespace Vidly.Controllers
             {
                 return HttpNotFound();
             }
+        }
+
+        [HttpPost]
+        public ActionResult Update(Movie movie)
+        {
+            UOW.MovieRepository.Update(new Movie
+            {
+                ID = movie.ID,
+                Name = movie.Name,
+                ReleaseDate = movie.ReleaseDate,
+                NumberInStock = movie.NumberInStock,
+                GenreID = movie.GenreID,
+            });
+
+            UOW.Complete();
+            UOW.Dispose();
+
+            return RedirectToAction("Index");
+
         }
 
         public ActionResult New()
