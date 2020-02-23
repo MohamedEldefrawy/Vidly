@@ -64,6 +64,7 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
+
             MoviesViewModel moviesView = new MoviesViewModel()
             {
                 Genres = UOW.GenreRepository.GetAll("No"),
@@ -73,8 +74,21 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var ViewModel = new MoviesViewModel()
+                {
+                    Movie = movie,
+                    Genres = UOW.GenreRepository.GetAll("No")
+                };
+
+                return View("New", ViewModel);
+            }
+
+
             UOW.MovieRepository.Add(new Movie
             {
                 Name = movie.Name,

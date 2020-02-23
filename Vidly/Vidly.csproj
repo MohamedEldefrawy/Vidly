@@ -136,6 +136,7 @@
     <Compile Include="BL\Domain\IdentityModels.cs" />
     <Compile Include="BL\Domain\MemmberShipType.cs" />
     <Compile Include="BL\Min18YearsIfMember.cs" />
+    <Compile Include="BL\Range.cs" />
     <Compile Include="BL\Repositories\GenreRepository.cs" />
     <Compile Include="BL\Repositories\IGenreRepository.cs" />
     <Compile Include="BL\Repositories\IMemmberShipTypeRepository.cs" />
@@ -222,6 +223,10 @@
     <Compile Include="Migrations\202002231742553_changeCustomerNameConstraints.cs" />
     <Compile Include="Migrations\202002231742553_changeCustomerNameConstraints.Designer.cs">
       <DependentUpon>202002231742553_changeCustomerNameConstraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002231930015_addConstraintsToMovie.cs" />
+    <Compile Include="Migrations\202002231930015_addConstraintsToMovie.Designer.cs">
+      <DependentUpon>202002231930015_addConstraintsToMovie.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -341,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002231742553_changeCustomerNameConstraints.resx">
       <DependentUpon>202002231742553_changeCustomerNameConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002231930015_addConstraintsToMovie.resx">
+      <DependentUpon>202002231930015_addConstraintsToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
