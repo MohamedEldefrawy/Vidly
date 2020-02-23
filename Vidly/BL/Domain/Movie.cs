@@ -21,6 +21,7 @@ namespace Vidly.BL.Domain
         [Display(Name = "Number in Stock")]
 
         [Required]
+        [Range(1,20)]
         public int NumberInStock { get; set; }
 
         public Genre Genre { get; set; }
