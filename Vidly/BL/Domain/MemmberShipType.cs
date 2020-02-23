@@ -14,4 +14,10 @@ namespace Vidly.BL.Domain
 
         public string Name { get; set; }
     }
+
+    public enum EnumMemberShipType
+    {
+        Unknown,
+        PayAsYouGo
+    }
 }

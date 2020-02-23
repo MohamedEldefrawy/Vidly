@@ -4,30 +4,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<div class="p-top-10">
+    <h2>New Customer</h2>
 
-@using (Html.BeginForm("Create", "Customers", FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.Name)
-        @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+    @using (Html.BeginForm("Create", "Customers", FormMethod.Post))
+    {
+        <div class="form-group">
+            <div class="m-1">
+                @Html.LabelFor(c => c.Customer.Name)
+                @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Customer.Name)
 
-        @Html.LabelFor(c => c.Customer.BirthDate)
-        @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control" })
+            </div>
 
-        @Html.LabelFor(c => c.Customer.MemmberShipTypeID)
-        @Html.DropDownListFor(c => c.Customer.MemmberShipTypeID, new SelectList(Model.MemmberShipTypes, "Id", "Name"), "Select Memmbership"
-       , new { @class = "form-control" })
+            <div class="m-1">
+                @Html.LabelFor(c => c.Customer.BirthDate)
+                @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Customer.BirthDate)
 
-        <div class="checkbox">
-            <label>Subscribed to Newsletter?</label>
-            @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsetter)
+            </div>
+            <div class="m-1">
+                @Html.LabelFor(c => c.Customer.MemmberShipTypeID)
+                @Html.DropDownListFor(c => c.Customer.MemmberShipTypeID, new SelectList(Model.MemmberShipTypes, "Id", "Name"), "Select Memmbership"
+               , new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Customer.MemmberShipTypeID)
+
+            </div>
+
+
+            <div class="m-1">
+                <div class="checkbox">
+                    <label>Subscribed to Newsletter?</label>
+                    @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsetter)
+                </div>
+            </div>
+
+            @Html.HiddenFor(c => c.Customer.ID)
         </div>
-        @Html.HiddenFor(c => c.Customer.ID)
 
-    </div>
+        <div class="m-1">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    }
 
-}
 
+</div>

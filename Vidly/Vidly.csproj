@@ -135,6 +135,7 @@
     <Compile Include="BL\Domain\Genre.cs" />
     <Compile Include="BL\Domain\IdentityModels.cs" />
     <Compile Include="BL\Domain\MemmberShipType.cs" />
+    <Compile Include="BL\Min18YearsIfMember.cs" />
     <Compile Include="BL\Repositories\GenreRepository.cs" />
     <Compile Include="BL\Repositories\IGenreRepository.cs" />
     <Compile Include="BL\Repositories\IMemmberShipTypeRepository.cs" />
@@ -209,6 +210,18 @@
     <Compile Include="Migrations\202002161931487_CreateGenreForignKeyToMovies.cs" />
     <Compile Include="Migrations\202002161931487_CreateGenreForignKeyToMovies.Designer.cs">
       <DependentUpon>202002161931487_CreateGenreForignKeyToMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002231715475_changeCustomerValidationConfiguration.cs" />
+    <Compile Include="Migrations\202002231715475_changeCustomerValidationConfiguration.Designer.cs">
+      <DependentUpon>202002231715475_changeCustomerValidationConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002231727522_BirthDateRequired.cs" />
+    <Compile Include="Migrations\202002231727522_BirthDateRequired.Designer.cs">
+      <DependentUpon>202002231727522_BirthDateRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002231742553_changeCustomerNameConstraints.cs" />
+    <Compile Include="Migrations\202002231742553_changeCustomerNameConstraints.Designer.cs">
+      <DependentUpon>202002231742553_changeCustomerNameConstraints.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -319,6 +332,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161931487_CreateGenreForignKeyToMovies.resx">
       <DependentUpon>202002161931487_CreateGenreForignKeyToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002231715475_changeCustomerValidationConfiguration.resx">
+      <DependentUpon>202002231715475_changeCustomerValidationConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002231727522_BirthDateRequired.resx">
+      <DependentUpon>202002231727522_BirthDateRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002231742553_changeCustomerNameConstraints.resx">
+      <DependentUpon>202002231742553_changeCustomerNameConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

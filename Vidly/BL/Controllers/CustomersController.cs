@@ -71,6 +71,17 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var ViewModel = new CustomerViewModel()
+                {
+                    Customer = customer,
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+                };
+
+                return View("New", ViewModel);
+            }
+
             UOW.CustomerRepository.Add(new Customer
             {
                 BirthDate = customer.BirthDate,
@@ -81,7 +92,6 @@ namespace Vidly.Controllers
 
             UOW.Complete();
             UOW.Dispose();
-
             return RedirectToAction("Index", "Customers");
         }
     }

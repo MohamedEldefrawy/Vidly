@@ -16,10 +16,16 @@ namespace Vidly.DAL.Configs
                 .HasForeignKey(c => c.MemmberShipTypeID);
 
             Property(c => c.BirthDate)
-                .IsOptional()
+                .IsRequired()
                 .HasColumnType("Date");
 
-            Property(c => c.MemmberShipTypeID).HasColumnName("MemberShipID");
+            Property(c => c.MemmberShipTypeID)
+                .HasColumnName("MemberShipID")
+                .IsRequired();
+
+            Property(c => c.Name)
+                .IsRequired()
+                .HasMaxLength(40);            
 
         }
     }
