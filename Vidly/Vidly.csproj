@@ -143,6 +143,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="BL\APIs\MoviesController.cs" />
+    <Compile Include="BL\DTOs\MovieDTO.cs" />
     <Compile Include="BL\ObjectMapper.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
