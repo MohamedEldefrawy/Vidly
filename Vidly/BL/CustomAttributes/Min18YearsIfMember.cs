@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Vidly.BL.Domain;
 
-namespace Vidly.BL
+namespace Vidly.BL.CustomAttributes
 {
     public class Min18YearsIfMember : ValidationAttribute
     {

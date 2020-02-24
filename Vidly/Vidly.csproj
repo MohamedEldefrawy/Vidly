@@ -135,7 +135,7 @@
     <Compile Include="BL\Domain\Genre.cs" />
     <Compile Include="BL\Domain\IdentityModels.cs" />
     <Compile Include="BL\Domain\MemmberShipType.cs" />
-    <Compile Include="BL\Min18YearsIfMember.cs" />
+    <Compile Include="BL\CustomAttributes\Min18YearsIfMember.cs" />
     <Compile Include="BL\Repositories\GenreRepository.cs" />
     <Compile Include="BL\Repositories\IGenreRepository.cs" />
     <Compile Include="BL\Repositories\IMemmberShipTypeRepository.cs" />
