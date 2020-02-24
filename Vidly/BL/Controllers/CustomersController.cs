@@ -47,8 +47,20 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var ViewModel = new CustomerViewModel()
+                {
+                    Customer = customer,
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+                };
+
+                return View(ViewModel);
+            }
+
             UOW.CustomerRepository.Update(customer);
             UOW.Complete();
             UOW.Dispose();

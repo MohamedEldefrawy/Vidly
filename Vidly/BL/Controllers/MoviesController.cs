@@ -44,8 +44,21 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Movie movie)
         {
+
+            if (!ModelState.IsValid)
+            {
+                var ViewModel = new MoviesViewModel()
+                {
+                    Movie = movie,
+                    Genres = UOW.GenreRepository.GetAll("No")
+                };
+
+                return View("New", ViewModel);
+            }
+
             UOW.MovieRepository.Update(new Movie
             {
                 ID = movie.ID,
