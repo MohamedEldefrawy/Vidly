@@ -17,7 +17,7 @@ namespace Vidly.BL.CustomAttributes
                 customer.MemmberShipTypeID == (byte)EnumMemberShipType.PayAsYouGo)
                 return ValidationResult.Success;
 
-            if (customer.MemmberShipTypeID == null)
+            if (customer.MemmberShipTypeID == (byte)EnumMemberShipType.Unknown)
                 return new ValidationResult("Birthdate is required");
 
             var age = DateTime.Today.Year - customer.BirthDate.Year;

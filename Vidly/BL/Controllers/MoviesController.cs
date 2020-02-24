@@ -32,12 +32,12 @@ namespace Vidly.Controllers
 
                 return View(moviesViewModel);
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
 
                 return HttpNotFound();
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 return HttpNotFound();
             }

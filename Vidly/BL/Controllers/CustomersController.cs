@@ -34,12 +34,12 @@ namespace Vidly.Controllers
                 return View(customerViewModel);
 
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
 
                 return HttpNotFound();
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
                 return HttpNotFound();
             }
