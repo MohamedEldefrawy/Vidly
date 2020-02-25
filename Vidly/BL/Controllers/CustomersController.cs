@@ -18,7 +18,7 @@ namespace Vidly.Controllers
         {
 
 
-            return View(UOW.CustomerRepository.GetAll("MemberShipType"));
+            return View();
         }
 
         public ActionResult Details(int id)
