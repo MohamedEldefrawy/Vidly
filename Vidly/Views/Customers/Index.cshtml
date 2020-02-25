@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="p-50">
-    <h1>Customers</h1>
-    @Html.ActionLink("New", "New", null, new { @class = "btn btn-new" })
-    <table class="table table-bordered" style="font-size:18px;">
+<div class="p-5">
+    <h1 class="row">Customers</h1>
+    @Html.ActionLink("New", "New", null, new { @class = "btn btn-new row" })
+    <table id="Customers" class="table table-bordered" style="font-size:18px;">
         <thead>
             <tr>
                 <td>
@@ -16,7 +16,7 @@
                 </td>
                 <td>
                     <strong>
-                        Membersip Type
+                        Membership Type
                     </strong>
                 </td>
                 <td>
@@ -27,24 +27,7 @@
             </tr>
 
         </thead>
-        <tbody id="Customers">
-
-            @foreach (var customer in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.ActionLink(customer.Name, "Details", new { id = customer.ID })
-
-                    </td>
-                    <td>
-                        @customer.MemberShipType.Name
-                    </td>
-                    <td>
-                        <button class="btn btn-link btn-delete" data-customer-id="@customer.ID">DELETE</button>
-                    </td>
-                </tr>
-
-            }
+        <tbody>
         </tbody>
     </table>
 </div>
@@ -53,6 +36,32 @@
 {
     <script>
         $(document).ready(function () {
+
+            $("#Customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit'" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "memberShipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (customer) {
+                            return "<button class='btn btn-link btn-delete' data-customer-id='" +
+                                customer.id +
+                                "'>DELETE</button>";
+                        }
+                    }
+                ],
+            });
 
             $("#Customers").on("click", ".btn-delete", function () {
 

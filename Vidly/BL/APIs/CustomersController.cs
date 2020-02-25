@@ -23,7 +23,7 @@ namespace Vidly.BL.APIs
         [HttpGet]
         public IHttpActionResult GetCustomers()
         {
-
+            //var customers = UOW.CustomerRepository.GetAll("MemberShipType");
             //CustomerDTO customerDTO = new CustomerDTO
             return Ok(UOW.CustomerRepository.GetAll("MemberShipType")
                 .Select(objectMapper.Mapper.Map<Customer, CustomerDTO>));
