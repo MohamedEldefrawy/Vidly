@@ -78,3 +78,14 @@
         margin: 15px 0 5px 0 !important;
         border-bottom-width: 0 !important;
     }
+
+#Customers {
+    width: 100% !important;
+}
+
+
+
+#Customers_wrapper {
+    padding: 0 !important;
+    margin-top: 15px;
+}

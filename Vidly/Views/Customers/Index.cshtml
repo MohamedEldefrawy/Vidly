@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="p-5">
-    <h1 class="row">Customers</h1>
-    @Html.ActionLink("New", "New", null, new { @class = "btn btn-new row" })
-    <table id="Customers" class="table table-bordered" style="font-size:18px;">
+<div class="p-top-10">
+    <h1>Customers</h1>
+    @Html.ActionLink("New", "New", null, new { @class = "btn btn-new col-sm-12" })
+    <table id="Customers" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <td>
@@ -25,7 +25,6 @@
                     </strong>
                 </td>
             </tr>
-
         </thead>
         <tbody>
         </tbody>
