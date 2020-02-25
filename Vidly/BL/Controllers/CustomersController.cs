@@ -72,6 +72,7 @@ namespace Vidly.Controllers
         {
             var ViewModel = new CustomerViewModel
             {
+                Customer = new Customer(),
                 MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
 
             };
