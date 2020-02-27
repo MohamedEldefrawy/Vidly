@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="p-50">
+<div class="p-top-10">
     <h1>Movies</h1>
     @Html.ActionLink("New", "New", null, new { @class = "btn btn-new" })
 
-    <table id="Movies" class="table table-bordered" style="font-size:18px;">
+    <table id="Movies" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <td>
@@ -22,18 +22,18 @@
         </thead>
         <tbody>
 
-            @foreach (var movie in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.ActionLink(movie.Name, "Details", new { id = movie.ID })
-                    </td>
-                    <td>@movie.Genre.Name</td>
-                    <td>
-                        <button class="btn btn-link btn-delete" data-movie-id=@movie.ID>DELETE</button>
-                    </td>
-                </tr>
-            }
+            @*@foreach (var movie in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(movie.Name, "Details", new { id = movie.ID })
+                        </td>
+                        <td>@movie.Genre.Name</td>
+                        <td>
+                            <button class="btn btn-link btn-delete" data-movie-id=@movie.ID>DELETE</button>
+                        </td>
+                    </tr>
+                }*@
         </tbody>
     </table>
 </div>
@@ -41,6 +41,35 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
+
+            $("#Movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    method: "GET",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, movie) {
+                            return "<a href='/movies/details/" + movie.id + "'>" + movie.name + "</a>"
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, movie) {
+                            return "<button class='btn btn-link btn-delete' data-movie-id='" +
+                                movie.id +
+                                "'>DELETE</button>";
+                        }
+                    }
+                ]
+            });
+
             $("#Movies").on("click",
                 ".btn-delete",
                 function () {

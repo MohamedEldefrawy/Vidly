@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="BL\APIs\MoviesController.cs" />
+    <Compile Include="BL\DTOs\GenreDTO.cs" />
     <Compile Include="BL\DTOs\MembershipDTO.cs" />
     <Compile Include="BL\DTOs\MovieDTO.cs" />
     <Compile Include="BL\ObjectMapper.cs" />

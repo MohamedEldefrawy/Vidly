@@ -22,9 +22,9 @@ namespace Vidly.BL.DTOs
         [Range(1, 20)]
         public int NumberInStock { get; set; }
 
+        public GenreDTO Genre { get; set; }
 
         [Required]
-
         public int GenreID { get; set; }
 
     }

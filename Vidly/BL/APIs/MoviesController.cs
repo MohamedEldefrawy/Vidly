@@ -21,7 +21,7 @@ namespace Vidly.BL.APIs
 
         public IHttpActionResult GetMovies()
         {
-            return Ok(UOW.MovieRepository.GetAll("No")
+            return Ok(UOW.MovieRepository.GetAll("Genre")
                 .Select(objectMapper.Mapper.Map<Movie, MovieDTO>));
         }
 

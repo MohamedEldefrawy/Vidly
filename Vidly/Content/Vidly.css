@@ -79,13 +79,15 @@
         border-bottom-width: 0 !important;
     }
 
-#Customers {
+#Customers,
+#Movies {
     width: 100% !important;
 }
 
 
 
-#Customers_wrapper {
+#Customers_wrapper,
+#Movies_wrapper {
     padding: 0 !important;
     margin-top: 15px;
 }

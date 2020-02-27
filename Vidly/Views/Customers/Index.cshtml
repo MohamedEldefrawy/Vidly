@@ -38,12 +38,13 @@
             $("#Customers").DataTable({
                 ajax: {
                     url: "/api/customers",
+                    method: "GET",
                     dataSrc: ""
                 },
                 columns: [
                     {
                         data: "name",
-                        render: function (data,type,customer) {
+                        render: function (data, type, customer) {
                             return "<a href='/customers/details/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
