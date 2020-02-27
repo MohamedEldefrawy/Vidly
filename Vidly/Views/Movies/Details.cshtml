@@ -8,6 +8,7 @@
 
     <div class="p-top-10">
         <h2>Edit Movie</h2>
+        @Html.ValidationSummary()
 
         @using (Html.BeginForm("Update", "Movies", FormMethod.Post))
         {
@@ -24,7 +25,7 @@
                            data-val-date="The field Release Date must be a date."
                            data-val-required="The Release Date field is required."
                            id="Movie_ReleaseDate" name="Movie.ReleaseDate"
-                           type="text" value=@Model.Movie.ReleaseDate.ToString("MM/dd/yyyy")
+                           type="date" value=@Model.Movie.ReleaseDate.ToString("MM/dd/yyyy")
                            aria-describedby="Movie_ReleaseDate-error"
                            aria-invalid="true">
                     @Html.ValidationMessageFor(m => m.Movie.ReleaseDate)

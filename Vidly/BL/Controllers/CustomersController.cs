@@ -58,7 +58,7 @@ namespace Vidly.Controllers
                     MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
                 };
 
-                return View(ViewModel);
+                return View("Details",ViewModel);
             }
 
             UOW.CustomerRepository.Update(customer);
