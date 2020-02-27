@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using Vidly.BL.Domain;
 using Vidly.DAL.Configs;
+using Vidly.Models;
 
 namespace Vidly.DAL
 {
@@ -24,6 +25,11 @@ namespace Vidly.DAL
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.Add(new CustomerConfigurations());
             modelBuilder.Configurations.Add(new MoviesConfigurations());
+        }
+
+        public static VidlyDbContext Create()
+        {
+            return new VidlyDbContext();
         }
 
     }
