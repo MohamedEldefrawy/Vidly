@@ -17,7 +17,7 @@ namespace Vidly.Controllers
         public ActionResult Index()
         {
 
-            return View(UOW.MovieRepository.GetAll("Genre"));
+            return View();
         }
 
         public ActionResult Details(int id)
