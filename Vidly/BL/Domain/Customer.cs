@@ -17,7 +17,7 @@ namespace Vidly.BL.Domain
 
         public MemberShipType MemberShipType { get; set; }
 
-        [Display(Name = "Memmbership Type")]
+        [Display(Name = "Membership Type")]
         public byte MemmberShipTypeID { get; set; }
 
         [Display(Name = "Birthdate")]

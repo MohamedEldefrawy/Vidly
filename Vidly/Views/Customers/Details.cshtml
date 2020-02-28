@@ -12,7 +12,10 @@
         <div class="form-group">
             <div class="m-1">
                 @Html.LabelFor(c => c.Customer.Name)
-                @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+                <input class="form-control" data-val="true"
+                       data-val-maxlength="The field Name must be a string or array type with a maximum length of '40'."
+                       data-val-maxlength-max="40" data-val-required="The Name field is required." id="Customer_Name"
+                       name="Customer.Name" type="text">
                 @Html.ValidationMessageFor(c => c.Customer.Name)
 
             </div>
@@ -22,21 +25,30 @@
                        data-val="true"
                        data-val-date="The field Birthdate must be a date."
                        data-val-required="The Birthdate field is required."
-                       id="Customer_BirthDate" name="Customer.BirthDate" type="text" value=@Model.Customer.BirthDate.ToString("MM/dd/yyyy")
+                       id="Customer_BirthDate" name="Customer.BirthDate" type="date"
                        aria-describedby="Customer_BirthDate-error" aria-invalid="true">
                 @Html.ValidationMessageFor(c => c.Customer.BirthDate)
             </div>
             <div class="m-1">
                 @Html.LabelFor(c => c.Customer.MemmberShipTypeID)
-                @Html.DropDownListFor(c => c.Customer.MemmberShipTypeID, new SelectList(Model.MemmberShipTypes, "Id", "Name"), "Select Memmbership"
-                , new { @class = "form-control" })
+                <select class="form-control" data-val="true" data-val-number="The field Membership Type must be a number."
+                        data-val-required="The Membership Type field is required."
+                        id="Customer_MemmberShipTypeID" name="Customer.MemmberShipTypeID">
+                    <option value="">Select Membership</option>
+                    <option value="1">Pay as you go</option>
+                    <option value="2">Monthly</option>
+                    <option value="3">Quarterly</option>
+                    <option value="4">Yearly</option>
+                </select>
                 @Html.ValidationMessageFor(c => c.Customer.MemmberShipTypeID)
             </div>
-
             <div class="checkbox">
                 <label>Subscribed to Newsletter?</label>
-                @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsetter)
+                <input data-val="true" data-val-required="The IsSubscribedToNewsetter field is required."
+                       id="Customer_IsSubscribedToNewsetter"
+                       name="Customer.IsSubscribedToNewsetter" type="checkbox" checked="">
             </div>
+
             @Html.HiddenFor(c => c.Customer.ID)
 
         </div>
@@ -48,5 +60,37 @@
 
 @section scripts  {
 
-    @Scripts.Render("~/bundles/jqueryval")  }
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script>
+        function setDate(date) {
+
+            var actualDate = new Date(date);
+
+            var day = actualDate.getDate(),
+                month = actualDate.getMonth() + 1,
+                year = actualDate.getFullYear()
+
+            month = (month < 10 ? "0" : "") + month;
+            day = (day < 10 ? "0" : "") + day;
+
+            return year + "-" + month + "-" + day;
+        }
+
+        $.ajax({
+            url: "/api/customers/" + $("#Customer_ID").val(),
+            method: "GET",
+            success: function (data) {
+                $("#Customer_Name").val(data.name);
+                $("#Customer_BirthDate").val(setDate(data.birthDate));
+                $("#Customer_MemmberShipTypeID").val(data.memmberShipTypeID);
+                if (data.isSubscribedToNewsetter) {
+                    $("#Customer_IsSubscribedToNewsetter").prop('checked', true);
+                } else {
+                    $("#Customer_IsSubscribedToNewsetter").prop('checked', false);
+                }
+
+            }
+        })
+    </script>  }
 
