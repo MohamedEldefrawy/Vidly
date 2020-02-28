@@ -23,26 +23,8 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int id)
         {
-            try
-            {
-                CustomerViewModel customerViewModel = new CustomerViewModel()
-                {
-                    Customer = UOW.CustomerRepository.Find(c => c.ID == id, "MemberShipType").SingleOrDefault(),
-                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
-                };
 
-                return View(customerViewModel);
-
-            }
-            catch (ArgumentNullException)
-            {
-
-                return HttpNotFound();
-            }
-            catch (InvalidOperationException)
-            {
-                return HttpNotFound();
-            }
+            return View();
 
         }
 
@@ -58,7 +40,7 @@ namespace Vidly.Controllers
                     MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
                 };
 
-                return View("Details",ViewModel);
+                return View("Details", ViewModel);
             }
 
             UOW.CustomerRepository.Update(customer);

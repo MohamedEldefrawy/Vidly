@@ -15,7 +15,12 @@
             <div class="form-group">
                 <div class="m-1">
                     @Html.LabelFor(m => m.Movie.Name)
-                    @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+                    <input class="form-control" data-val="true"
+                           data-val-maxlength="The field Name must be a string or array type with a maximum length of '40'."
+                           data-val-maxlength-max="40" data-val-required="The Name field is required." id="Movie_Name"
+                           name="Movie.Name" type="text"
+                           aria-describedby="Movie_Name-error" aria-invalid="false">
+
                     @Html.ValidationMessageFor(m => m.Movie.Name)
                 </div>
                 <div class="m-1">
@@ -25,7 +30,7 @@
                            data-val-date="The field Release Date must be a date."
                            data-val-required="The Release Date field is required."
                            id="Movie_ReleaseDate" name="Movie.ReleaseDate"
-                           type="date" value=@Model.Movie.ReleaseDate.ToString("MM/dd/yyyy")
+                           type="date"
                            aria-describedby="Movie_ReleaseDate-error"
                            aria-invalid="true">
                     @Html.ValidationMessageFor(m => m.Movie.ReleaseDate)
@@ -33,34 +38,75 @@
                 </div>
                 <div class="m-1">
                     @Html.LabelFor(m => m.Genres)
-                    @Html.DropDownListFor(m => m.Movie.GenreID, new SelectList(Model.Genres, "ID", "Name")
-                    , "Select Genre", new { @class = "form-control" })
+                    <select class="form-control" data-val="true" data-val-number="The field GenreID must be a number." data-val-required="The GenreID field is required." id="Movie_GenreID" name="Movie.GenreID" aria-describedby="Movie_GenreID-error" aria-invalid="false">
+                        <option value="">Select Genre</option>
+                        <option value="1">Action</option>
+                        <option value="2">Comedy</option>
+                        <option value="3">Romance</option>
+                        <option value="4">Family</option>
+                    </select>
 
                     @Html.ValidationMessageFor(m => m.Movie.GenreID)
                 </div>
 
                 <div class="m-1">
                     @Html.LabelFor(m => m.Movie.NumberInStock)
-                    @Html.TextBoxFor(m => m.Movie.NumberInStock, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Movie.NumberInStock)
+                    <input class="form-control" data-val="true"
+                           data-val-number="The field Number in Stock must be a number."
+                           data-val-range="The field Number in Stock must be between 1 and 20."
+                           data-val-range-max="20" data-val-range-min="1"
+                           data-val-required="The Number in Stock field is required."
+                           id="Movie_NumberInStock" name="Movie.NumberInStock" type="number">                    @Html.ValidationMessageFor(m => m.Movie.NumberInStock)
+                    </div>
+
+
+
+                    @Html.HiddenFor(m => m.Movie.ID)
+
                 </div>
 
-
-
-                @Html.HiddenFor(m => m.Movie.ID)
-
-            </div>
-
-            @Html.AntiForgeryToken()
-            <div class="m-1">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        }
+                @Html.AntiForgeryToken()
+                <div class="m-1">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
 
     </div>
 
 </div>
 
-@section scripts  {
+@section scripts {
 
-    @Scripts.Render("~/bundles/jqueryval")  }
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function setDate(date) {
+
+            var actualDate = new Date(date);
+
+            var day = actualDate.getDate(),
+                month = actualDate.getMonth() + 1,
+                year = actualDate.getFullYear()
+
+            month = (month < 10 ? "0" : "") + month;
+            day = (day < 10 ? "0" : "") + day;
+
+            return year + "-" + month + "-" + day;
+        }
+
+        function getID() {
+            var IdIndex = window.location.pathname.lastIndexOf('/') + 1;
+            return window.location.pathname.substring(IdIndex);
+        }
+
+        $.ajax({
+            url: "/api/movies/" + getID(),
+            method: "GET",
+            success: function (data) {
+                $("#Movie_Name").val(data.name);
+                $("#Movie_ReleaseDate").val(setDate(data.releaseDate));
+                $("#Movie_GenreID").val(data.genreID);
+                $("#Movie_NumberInStock").val(data.numberInStock);
+            }
+        });
+    </script>
+}

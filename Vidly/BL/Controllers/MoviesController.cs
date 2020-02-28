@@ -22,25 +22,7 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int id)
         {
-            try
-            {
-                MoviesViewModel moviesViewModel = new MoviesViewModel()
-                {
-                    Movie = UOW.MovieRepository.Find(m => m.ID == id, "Genre").SingleOrDefault(),
-                    Genres = UOW.GenreRepository.GetAll("No")
-                };
-
-                return View(moviesViewModel);
-            }
-            catch (InvalidOperationException)
-            {
-
-                return HttpNotFound();
-            }
-            catch (ArgumentNullException)
-            {
-                return HttpNotFound();
-            }
+            return View();
         }
 
         [HttpPost]

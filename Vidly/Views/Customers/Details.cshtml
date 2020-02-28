@@ -61,7 +61,7 @@
 @section scripts  {
 
     @Scripts.Render("~/bundles/jqueryval")
-    
+
     <script>
         function setDate(date) {
 
@@ -77,8 +77,14 @@
             return year + "-" + month + "-" + day;
         }
 
+        function getID() {
+            var IdIndex = window.location.pathname.lastIndexOf('/') + 1; // Returns path only (/path/example.html)
+            return window.location.pathname.substring(IdIndex);
+
+        }
+
         $.ajax({
-            url: "/api/customers/" + $("#Customer_ID").val(),
+            url: "/api/customers/" + getID(),
             method: "GET",
             success: function (data) {
                 $("#Customer_Name").val(data.name);
