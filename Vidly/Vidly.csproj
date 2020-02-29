@@ -171,6 +171,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BL\APIs\MoviesController.cs" />
     <Compile Include="BL\Controllers\AccountController.cs" />
+    <Compile Include="Migrations\202002291939328_SeedUsers.cs" />
+    <Compile Include="Migrations\202002291939328_SeedUsers.designer.cs">
+      <DependentUpon>202002291939328_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -693,6 +697,8 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Customers\IndexUser.cshtml" />
+    <Content Include="Views\Movies\IndexUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -760,6 +766,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271341529_UpdateIdentityModels.resx">
       <DependentUpon>202002271341529_UpdateIdentityModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291939328_SeedUsers.resx">
+      <DependentUpon>202002291939328_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

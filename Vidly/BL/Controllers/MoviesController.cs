@@ -17,7 +17,13 @@ namespace Vidly.Controllers
         public ActionResult Index()
         {
 
-            return View();
+            if (User.IsInRole("CanManageMovies"))
+            {
+                return View("Index");
+
+            }
+
+            return View("IndexUser");
         }
 
         public ActionResult Details(int id)

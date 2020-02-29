@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Vidly.BL.Domain.Movie>
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="p-top-10">
+    <h1>Movies</h1>
+
+    <table id="Movies" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>
+                    <strong>Movies</strong>
+                </td>
+                <td>
+                    <strong>Genre</strong>
+                </td>
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#Movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    method: "GET",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, movie) {
+                            return "<a href='/movies/details/" + movie.id + "'>" + movie.name + "</a>"
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+
+                ]
+            });
+
+        });
+    </script>
+}

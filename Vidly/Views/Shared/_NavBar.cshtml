@@ -18,10 +18,16 @@
             <form method="post" action="@Url.Action("LogOff","Account")">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <span style="color: black" class="nav-link">
+                            @User.Identity.Name
+                        </span>
+                    </li>
+                    <li class="nav-item">
 
                         @Html.AntiForgeryToken()
                         <button class="btn btn-link" type="submit" style="color: white">Logout</button>
                     </li>
+
                 </ul>
             </form>
 
