@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.BL.Domain;
+using Vidly.BL.Roles;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
 using Vidly.ViewModels;
@@ -63,6 +64,7 @@ namespace Vidly.Controllers
 
         }
 
+        [Authorize(Roles = RoleNames.CanManageMovies)]
         public ActionResult New()
         {
 
