@@ -7,6 +7,7 @@
 <div class="p-top-10">
     <h2>Edit Customer</h2>
 
+    @Html.ValidationSummary()
     @using (Html.BeginForm("Update", "Customers", FormMethod.Post))
     {
         <div class="form-group">
@@ -90,6 +91,7 @@
                 $("#Customer_Name").val(data.name);
                 $("#Customer_BirthDate").val(setDate(data.birthDate));
                 $("#Customer_MemmberShipTypeID").val(data.memmberShipTypeID);
+                $("#Customer_ID").val(getID());
                 if (data.isSubscribedToNewsetter) {
                     $("#Customer_IsSubscribedToNewsetter").prop('checked', true);
                 } else {

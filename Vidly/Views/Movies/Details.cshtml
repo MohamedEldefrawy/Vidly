@@ -102,6 +102,7 @@
             url: "/api/movies/" + getID(),
             method: "GET",
             success: function (data) {
+                $("#Movie_ID").val(getID());
                 $("#Movie_Name").val(data.name);
                 $("#Movie_ReleaseDate").val(setDate(data.releaseDate));
                 $("#Movie_GenreID").val(data.genreID);
