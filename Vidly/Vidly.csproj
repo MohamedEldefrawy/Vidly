@@ -179,6 +179,10 @@
     <Compile Include="Migrations\202002291939328_SeedUsers.designer.cs">
       <DependentUpon>202002291939328_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs" />
+    <Compile Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.designer.cs">
+      <DependentUpon>202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -773,6 +777,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002291939328_SeedUsers.resx">
       <DependentUpon>202002291939328_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.resx">
+      <DependentUpon>202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
