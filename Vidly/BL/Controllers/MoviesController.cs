@@ -34,6 +34,8 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public ActionResult Update(Movie movie)
         {
 
@@ -78,6 +80,8 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public ActionResult Create(Movie movie)
         {
             if (!ModelState.IsValid)

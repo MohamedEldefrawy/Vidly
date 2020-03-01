@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Vidly.BL.Domain;
 using Vidly.BL.DTOs;
+using Vidly.BL.Roles;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
 
@@ -43,6 +44,8 @@ namespace Vidly.BL.APIs
 
         //POST api/movies/
         [HttpPost]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public IHttpActionResult CreateMovie(MovieDTO movieDTO)
         {
             if (!ModelState.IsValid)
@@ -61,6 +64,8 @@ namespace Vidly.BL.APIs
 
         //PUT api/movies/(id)
         [HttpPut]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public IHttpActionResult UpdateMovie(int id, MovieDTO movieDTO)
         {
             if (!ModelState.IsValid)
@@ -85,6 +90,8 @@ namespace Vidly.BL.APIs
 
         //Delete api/movies/(id)
         [HttpDelete]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public IHttpActionResult DeleteMovie(int id)
         {
             var selectedMovie = UOW.MovieRepository.Find(m => m.ID == id, "no").SingleOrDefault();

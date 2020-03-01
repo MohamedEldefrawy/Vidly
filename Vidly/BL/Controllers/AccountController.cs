@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Vidly;
+using Vidly.BL.Domain;
 using Vidly.DAL;
 using Vidly.Models;
 using Vidly.ViewModels;

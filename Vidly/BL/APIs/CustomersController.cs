@@ -8,6 +8,7 @@ using System.Web.Http;
 using Vidly.BL;
 using Vidly.BL.Domain;
 using Vidly.BL.DTOs;
+using Vidly.BL.Roles;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
 
@@ -46,6 +47,7 @@ namespace Vidly.BL.APIs
 
         //Post api/customers
         [HttpPost]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
         public IHttpActionResult CreateCustomer(CustomerDTO customerDTO)
         {
 
@@ -63,6 +65,8 @@ namespace Vidly.BL.APIs
 
         //Put api/customers/id
         [HttpPut]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public IHttpActionResult UpdateCustomer(int id, CustomerDTO customerDTO)
         {
             if (!ModelState.IsValid)
@@ -88,6 +92,8 @@ namespace Vidly.BL.APIs
 
         //Delete api/customers/id
         [HttpDelete]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
+
         public IHttpActionResult DeleteCustomer(int id)
         {
             var selectedCustomer = UOW.CustomerRepository.Find(c => c.ID == id, "No").SingleOrDefault();
