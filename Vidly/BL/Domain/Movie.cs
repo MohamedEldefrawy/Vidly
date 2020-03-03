@@ -29,5 +29,7 @@ namespace Vidly.BL.Domain
         [Required]
 
         public int GenreID { get; set; }
+
+        public ICollection<RentalDetails> RentalsDetails { get; set; }
     }
 }

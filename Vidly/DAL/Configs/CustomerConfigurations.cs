@@ -25,7 +25,7 @@ namespace Vidly.DAL.Configs
 
             Property(c => c.Name)
                 .IsRequired()
-                .HasMaxLength(40);            
+                .HasMaxLength(40);
 
         }
     }

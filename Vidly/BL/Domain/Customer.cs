@@ -23,5 +23,8 @@ namespace Vidly.BL.Domain
         [Display(Name = "Birthdate")]
         [Min18YearsIfMember]
         public DateTime BirthDate { get; set; }
+
+        public ICollection<Rental> Rentals { get; set; }
+
     }
 }

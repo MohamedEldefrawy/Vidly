@@ -14,6 +14,11 @@ namespace Vidly.BL.UOW
         IMemmberShipTypeRepository MemmberShipTypeRepository { get; }
 
         IGenreRepository GenreRepository { get; }
+
+        IEmployeeRepository EmployeeRepository { get; }
+        IRentalRepository RentalRepository { get; }
+
+        IRentalDetailsRepository RentalDetailsRepository { get; }
         int Complete();
     }
 }

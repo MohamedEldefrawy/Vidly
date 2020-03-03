@@ -173,9 +173,20 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BL\APIs\MoviesController.cs" />
+    <Compile Include="BL\APIs\NewRentalsController.cs" />
     <Compile Include="BL\Controllers\AccountController.cs" />
+    <Compile Include="BL\Domain\Employee.cs" />
+    <Compile Include="BL\Domain\Rental.cs" />
+    <Compile Include="BL\Domain\RentalDetails.cs" />
     <Compile Include="BL\NavigationPropertiesNames.cs" />
+    <Compile Include="BL\Repositories\EmployeeRepository.cs" />
+    <Compile Include="BL\Repositories\IEmployeeRepository.cs" />
+    <Compile Include="BL\Repositories\IRentalDetailsRepository.cs" />
+    <Compile Include="BL\Repositories\IRentalRepository.cs" />
+    <Compile Include="BL\Repositories\RentalDetailsRepository.cs" />
+    <Compile Include="BL\Repositories\RentalRepository.cs" />
     <Compile Include="BL\Roles\RoleNames.cs" />
+    <Compile Include="DAL\Configs\CustomerConfigurations.cs" />
     <Compile Include="Migrations\202002291939328_SeedUsers.cs" />
     <Compile Include="Migrations\202002291939328_SeedUsers.designer.cs">
       <DependentUpon>202002291939328_SeedUsers.cs</DependentUpon>
@@ -184,6 +195,10 @@
     <Compile Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.designer.cs">
       <DependentUpon>202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs" />
+    <Compile Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.designer.cs">
+      <DependentUpon>202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -191,7 +206,7 @@
     </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="BL\Domain\ApplicationUser.cs" />
-    <Compile Include="BL\Domain\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="BL\DTOs\GenreDTO.cs" />
     <Compile Include="BL\DTOs\MembershipDTO.cs" />
     <Compile Include="BL\DTOs\MovieDTO.cs" />
@@ -207,15 +222,14 @@
     <Compile Include="BL\Repositories\IGenreRepository.cs" />
     <Compile Include="BL\Repositories\IMemmberShipTypeRepository.cs" />
     <Compile Include="BL\Repositories\MemmberShipTypeRepository.cs" />
-    <Compile Include="DAL\Configs\CustomerConfigurations.cs" />
     <Compile Include="DAL\Configs\MoviesConfigurations.cs" />
     <Compile Include="DAL\VidlyDbContext.cs" />
     <Compile Include="BL\Repositories\CustomerRepository.cs" />
     <Compile Include="BL\Repositories\ICustomerRepository.cs" />
     <Compile Include="BL\Repositories\IMovieRepository.cs" />
-    <Compile Include="BL\Repositories\IRepository.cs" />
+    <Compile Include="BL\Repositories\Originals\IRepository.cs" />
     <Compile Include="BL\Repositories\MovieRepository.cs" />
-    <Compile Include="BL\Repositories\Repository.cs" />
+    <Compile Include="BL\Repositories\Originals\Repository.cs" />
     <Compile Include="BL\UOW\IUnitOFWork.cs" />
     <Compile Include="BL\Controllers\CustomersController.cs" />
     <Compile Include="BL\Controllers\HomeController.cs" />
@@ -305,6 +319,7 @@
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
+    <Compile Include="ViewModels\NewRentalsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -784,6 +799,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.resx">
       <DependentUpon>202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.resx">
+      <DependentUpon>202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
