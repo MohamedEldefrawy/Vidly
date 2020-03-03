@@ -14,6 +14,9 @@ namespace Vidly.DAL.Configs
             Property(r => r.RentDate)
                 .IsRequired()
                 .HasColumnType("Date");
+            Property(r => r.ReturnDate)
+                .IsOptional()
+                .HasColumnType("Date");
         }
     }
 }

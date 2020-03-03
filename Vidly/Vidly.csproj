@@ -178,6 +178,8 @@
     <Compile Include="BL\Domain\Employee.cs" />
     <Compile Include="BL\Domain\Rental.cs" />
     <Compile Include="BL\Domain\RentalDetails.cs" />
+    <Compile Include="BL\DTOs\RentalDetailsDTO.cs" />
+    <Compile Include="BL\DTOs\RentalDTO.cs" />
     <Compile Include="BL\NavigationPropertiesNames.cs" />
     <Compile Include="BL\Repositories\EmployeeRepository.cs" />
     <Compile Include="BL\Repositories\IEmployeeRepository.cs" />
@@ -205,6 +207,10 @@
     <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs" />
     <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.designer.cs">
       <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.cs" />
+    <Compile Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.designer.cs">
+      <DependentUpon>202003031748039_AddReturnDateColumnTORentTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -812,6 +818,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.resx">
       <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.resx">
+      <DependentUpon>202003031748039_AddReturnDateColumnTORentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
