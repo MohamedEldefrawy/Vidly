@@ -22,7 +22,7 @@ namespace Vidly.BL.APIs
 
         public IHttpActionResult GetMovies()
         {
-            return Ok(UOW.MovieRepository.GetAll("Genre")
+            return Ok(UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre)
                 .Select(objectMapper.Mapper.Map<Movie, MovieDTO>));
         }
 
@@ -30,7 +30,7 @@ namespace Vidly.BL.APIs
         [HttpGet]
         public IHttpActionResult GetMovie(int id)
         {
-            var Movie = UOW.MovieRepository.Find(m => m.ID == id, "NO").SingleOrDefault();
+            var Movie = UOW.MovieRepository.Find(m => m.ID == id, ChildrenOfEntities.NoChildren).SingleOrDefault();
 
             if (Movie == null)
             {
@@ -73,7 +73,7 @@ namespace Vidly.BL.APIs
                 return BadRequest();
             }
 
-            var selectedMovie = UOW.MovieRepository.Find(m => m.ID == id, "No").SingleOrDefault();
+            var selectedMovie = UOW.MovieRepository.Find(m => m.ID == id, ChildrenOfEntities.NoChildren).SingleOrDefault();
             if (selectedMovie == null)
             {
                 return NotFound();
@@ -94,7 +94,7 @@ namespace Vidly.BL.APIs
 
         public IHttpActionResult DeleteMovie(int id)
         {
-            var selectedMovie = UOW.MovieRepository.Find(m => m.ID == id, "no").SingleOrDefault();
+            var selectedMovie = UOW.MovieRepository.Find(m => m.ID == id, ChildrenOfEntities.NoChildren).SingleOrDefault();
             if (selectedMovie == null)
                 return NotFound();
             UOW.MovieRepository.Remove(selectedMovie);

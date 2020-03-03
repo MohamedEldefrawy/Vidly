@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Vidly.BL;
 using Vidly.BL.Domain;
 using Vidly.BL.Roles;
 using Vidly.DAL;
@@ -18,7 +19,7 @@ namespace Vidly.Controllers
         public ActionResult Index()
         {
 
-            if (User.IsInRole("CanManageMovies"))
+            if (User.IsInRole(RoleNames.CanManageMovies))
             {
                 return View("Index");
 
@@ -44,7 +45,7 @@ namespace Vidly.Controllers
                 var ViewModel = new CustomerViewModel()
                 {
                     Customer = customer,
-                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll(ChildrenOfEntities.NoChildren)
                 };
 
                 return View("Details", ViewModel);
@@ -63,7 +64,7 @@ namespace Vidly.Controllers
             var ViewModel = new CustomerViewModel
             {
                 Customer = new Customer(),
-                MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+                MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll(ChildrenOfEntities.NoChildren)
 
             };
 
@@ -82,7 +83,7 @@ namespace Vidly.Controllers
                 var ViewModel = new CustomerViewModel()
                 {
                     Customer = customer,
-                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll("No")
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll(ChildrenOfEntities.NoChildren)
                 };
 
                 return View("New", ViewModel);
