@@ -187,6 +187,9 @@
     <Compile Include="BL\Repositories\RentalRepository.cs" />
     <Compile Include="BL\Roles\RoleNames.cs" />
     <Compile Include="DAL\Configs\CustomerConfigurations.cs" />
+    <Compile Include="DAL\Configs\EmployeeConfigurations.cs" />
+    <Compile Include="DAL\Configs\RentalConfigurations.cs" />
+    <Compile Include="DAL\Configs\RentalDetailsConfigurations.cs" />
     <Compile Include="Migrations\202002291939328_SeedUsers.cs" />
     <Compile Include="Migrations\202002291939328_SeedUsers.designer.cs">
       <DependentUpon>202002291939328_SeedUsers.cs</DependentUpon>
@@ -198,6 +201,10 @@
     <Compile Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs" />
     <Compile Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.designer.cs">
       <DependentUpon>202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs" />
+    <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.designer.cs">
+      <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -802,6 +809,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.resx">
       <DependentUpon>202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.resx">
+      <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
