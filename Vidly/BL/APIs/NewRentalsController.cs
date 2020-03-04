@@ -14,8 +14,8 @@ namespace Vidly.BL.APIs
 {
     public class NewRentalsController : ApiController
     {
-        UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
-        ObjectMapper ObjectMapper = new ObjectMapper();
+        private readonly UnitOFWork UOW = new UnitOFWork(new VidlyDbContext());
+        private readonly ObjectMapper ObjectMapper = new ObjectMapper();
 
         [HttpPost]
         public IHttpActionResult NewRental(RentalDTO rentalDto)
@@ -25,8 +25,16 @@ namespace Vidly.BL.APIs
                 return BadRequest();
             }
 
-            var rental = ObjectMapper.Mapper.Map<RentalDTO, Rental>(rentalDto);
-            UOW.RentalRepository.Add(rental);
+            foreach (var rentDetail in rentalDto.RentalDetails)
+            {
+                if (UOW.MovieRepository.Find(m => m.ID == rentDetail.MovieID, ChildrenOfEntities.NoChildren)
+                    .SingleOrDefault().NumberInStock < rentDetail.quantity)
+                {
+                    return BadRequest("Movie is not available");
+                }
+            }
+
+            UOW.RentalRepository.Add(ObjectMapper.Mapper.Map<RentalDTO, Rental>(rentalDto));
             UOW.Complete();
             UOW.Dispose();
 

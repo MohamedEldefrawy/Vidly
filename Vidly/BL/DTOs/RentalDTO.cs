@@ -14,7 +14,7 @@ namespace Vidly.BL.DTOs
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
-        public ICollection<RentalDetailsDTO> RentalDetails { get; set; }
+        public IEnumerable<RentalDetailsDTO> RentalDetails { get; set; }
     }
 
 

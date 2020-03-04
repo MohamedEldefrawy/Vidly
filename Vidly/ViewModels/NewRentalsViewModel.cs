@@ -15,6 +15,9 @@ namespace Vidly.ViewModels
         [Display(Name = "Rent date")]
         public DateTime RentDate { get; set; }
 
+        [Display(Name = "Return date")]
+        public DateTime ReturnDate { get; set; }
+
         public int MovieID { get; set; }
 
     }
