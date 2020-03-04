@@ -7,7 +7,8 @@ using Vidly.BL.Domain;
 
 namespace Vidly.BL.Repositories
 {
-    public interface IRentalRepository:IRepository<Rental>
+    public interface IRentalRepository : IRepository<Rental>
     {
+        int GetCurrentIdentValue();
     }
 }

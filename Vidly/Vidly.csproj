@@ -175,6 +175,7 @@
     <Compile Include="BL\APIs\MoviesController.cs" />
     <Compile Include="BL\APIs\NewRentalsController.cs" />
     <Compile Include="BL\Controllers\AccountController.cs" />
+    <Compile Include="BL\Controllers\RentalsController.cs" />
     <Compile Include="BL\Domain\Employee.cs" />
     <Compile Include="BL\Domain\Rental.cs" />
     <Compile Include="BL\Domain\RentalDetails.cs" />
@@ -739,6 +740,7 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Customers\IndexUser.cshtml" />
     <Content Include="Views\Movies\IndexUser.cshtml" />
+    <Content Include="Views\Rentals\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
