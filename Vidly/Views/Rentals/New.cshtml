@@ -8,28 +8,30 @@
     <div class="col-lg-6 col-md-6 rent-form">
         <form>
             <div class="form-group">
-                <label>Customer</label>
-                <input type="text" value="" class="form-control" />
-            </div>
-            <div class="form-group">
                 <label>Employee</label>
-                <input type="text" class="form-control" value="@User.Identity.Name" />
+                <input type="text" disabled="disabled" class="form-control" value="@User.Identity.Name" />
             </div>
+
+            <div class="form-group">
+                <label>Customer</label>
+                <select class="form-control select-customer">
+                    <option> Select Customer</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label>Rent date</label>
-                <input type="date" value="" class="form-control" />
+                <input type="date" class="form-control rent-date" />
             </div>
+
+            <hr />
 
             <div class="add-movie-section">
                 <div class="form-group">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </div>
+                    <label>Movie</label>
+                    <select class="form-control select-movie">
+                        <option>Select Movie</option>
+                    </select>
 
                 </div>
                 <div class="form-group">
@@ -77,6 +79,42 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+
+            function setDate(date) {
+
+                var actualDate = new Date(date);
+
+                var day = actualDate.getDate(),
+                    month = actualDate.getMonth() + 1,
+                    year = actualDate.getFullYear()
+
+                month = (month < 10 ? "0" : "") + month;
+                day = (day < 10 ? "0" : "") + day;
+
+                return year + "-" + month + "-" + day;
+            }
+
+            $.ajax({
+                url: "/api/newrentals",
+                method: "GET",
+                success: function (result) {
+                    for (let customer of result.customers) {
+                        $(".select-customer")
+                            .append(`<option value="` + customer["id"] + `">` + customer["name"] + `</option>`);
+                    }
+
+                    $(".rent-date").val(setDate(Date.now()));
+
+                    for (let movie of result.movies) {
+                        $(".select-movie")
+                            .append(`<option value="` + movie["id"] + `">` + movie["name"] + `</option>`);
+                    }
+
+
+                }
+
+            });
+
 
         });
     </script>
