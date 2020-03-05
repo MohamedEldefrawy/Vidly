@@ -159,7 +159,7 @@ namespace Vidly.BL.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email,
                     DrivingLicense = model.DrivingLicense,
                     PhoneNumber = model.PhoneNumber

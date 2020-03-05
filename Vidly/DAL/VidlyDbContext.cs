@@ -20,7 +20,6 @@ namespace Vidly.DAL
 
         public DbSet<MemberShipType> MemberShipTypes { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<RentalDetails> RentalDetails { get; set; }
 

@@ -15,7 +15,6 @@ namespace Vidly.BL.UOW
 
         IGenreRepository GenreRepository { get; }
 
-        IEmployeeRepository EmployeeRepository { get; }
         IRentalRepository RentalRepository { get; }
 
         IRentalDetailsRepository RentalDetailsRepository { get; }

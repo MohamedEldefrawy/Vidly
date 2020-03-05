@@ -14,7 +14,8 @@ namespace Vidly.BL.Domain
         public DateTime? ReturnDate { get; set; }
 
         public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
+
+        public ApplicationUser User { get; set; }
 
         public ICollection<RentalDetails> RentalDetails { get; set; }
     }

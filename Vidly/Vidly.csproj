@@ -176,21 +176,17 @@
     <Compile Include="BL\APIs\NewRentalsController.cs" />
     <Compile Include="BL\Controllers\AccountController.cs" />
     <Compile Include="BL\Controllers\RentalsController.cs" />
-    <Compile Include="BL\Domain\Employee.cs" />
     <Compile Include="BL\Domain\Rental.cs" />
     <Compile Include="BL\Domain\RentalDetails.cs" />
     <Compile Include="BL\DTOs\RentalDetailsDTO.cs" />
     <Compile Include="BL\DTOs\RentalDTO.cs" />
     <Compile Include="BL\NavigationPropertiesNames.cs" />
-    <Compile Include="BL\Repositories\EmployeeRepository.cs" />
-    <Compile Include="BL\Repositories\IEmployeeRepository.cs" />
     <Compile Include="BL\Repositories\IRentalDetailsRepository.cs" />
     <Compile Include="BL\Repositories\IRentalRepository.cs" />
     <Compile Include="BL\Repositories\RentalDetailsRepository.cs" />
     <Compile Include="BL\Repositories\RentalRepository.cs" />
     <Compile Include="BL\Roles\RoleNames.cs" />
     <Compile Include="DAL\Configs\CustomerConfigurations.cs" />
-    <Compile Include="DAL\Configs\EmployeeConfigurations.cs" />
     <Compile Include="DAL\Configs\RentalConfigurations.cs" />
     <Compile Include="DAL\Configs\RentalDetailsConfigurations.cs" />
     <Compile Include="Migrations\202002291939328_SeedUsers.cs" />
@@ -212,6 +208,10 @@
     <Compile Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.cs" />
     <Compile Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.designer.cs">
       <DependentUpon>202003031748039_AddReturnDateColumnTORentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs" />
+    <Compile Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.designer.cs">
+      <DependentUpon>202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -823,6 +823,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.resx">
       <DependentUpon>202003031748039_AddReturnDateColumnTORentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.resx">
+      <DependentUpon>202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

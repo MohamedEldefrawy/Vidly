@@ -18,7 +18,6 @@ namespace Vidly.DAL.UOW
 
         public IGenreRepository GenreRepository { get; set; }
 
-        public IEmployeeRepository EmployeeRepository { get; set; }
 
         public IRentalRepository RentalRepository { get; set; }
 
@@ -33,7 +32,6 @@ namespace Vidly.DAL.UOW
             this.MovieRepository = new MovieRepository(VidlyModel);
             this.MemmberShipTypeRepository = new MemmberShipTypeRepository(VidlyModel);
             this.GenreRepository = new GenreRepository(VidlyModel);
-            this.EmployeeRepository = new EmployeeRepository(VidlyModel);
             this.RentalRepository = new RentalRepository(VidlyModel);
             this.RentalDetailsRepository = new RentalDetailsRepository(VidlyModel);
         }

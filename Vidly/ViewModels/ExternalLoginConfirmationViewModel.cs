@@ -8,6 +8,12 @@ namespace Vidly.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+
+        [Required]
+        [MaxLength(50)]
+        [Display(Name = "Name")]
+        public string UserName { get; set; }
+
         [Required]
         [MaxLength(20)]
         [Display(Name = "Driving License")]
