@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label>Rent date</label>
-                <input type="date" class="form-control rent-date" />
+                <input type="date" disabled="disabled" class="form-control rent-date" />
             </div>
 
             <hr />
@@ -36,41 +36,22 @@
                 </div>
                 <div class="form-group">
                     <label>Unit price</label>
-                    <input type="number" value="" class="form-control" />
+                    <input type="number" class="form-control movie-price" />
                 </div>
                 <div class="form-group">
                     <label>quantity</label>
-                    <input type="number" value="" class="form-control" />
+                    <input type="number" class="form-control movie-quantity" />
                 </div>
 
-                <div class="form-group">
-                    <button class="btn btn-primary btn-add-movie">Add To Cart</button>
-                </div>
             </div>
-
-
         </form>
+        <div>
+            <button class="btn btn-primary btn-add-movie">Add To Cart</button>
+        </div>
     </div>
 
     <div class="col-lg-6 col-md-6 shopping-cart">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Movie Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Movie Genre</h6>
-                <p class="card-text">Unit price</p>
-                <p class="card-text">quantity</p>
-                <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Movie Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Movie Genre</h6>
-                <p class="card-text">Unit price</p>
-                <p class="card-text">quantity</p>
-                <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
-            </div>
-        </div>
+
 
 
     </div>
@@ -94,6 +75,7 @@
                 return year + "-" + month + "-" + day;
             }
 
+
             $.ajax({
                 url: "/api/newrentals",
                 method: "GET",
@@ -107,12 +89,26 @@
 
                     for (let movie of result.movies) {
                         $(".select-movie")
-                            .append(`<option value="` + movie["id"] + `">` + movie["name"] + `</option>`);
+                            .append(`<option data-genre="` + movie.genre.name + `" value="` + movie["id"] + `">` + movie["name"] + `</option>`);
+
                     }
 
-
                 }
+            });
 
+            $(".btn-add-movie").on("click", function () {
+
+                $(".shopping-cart").append(`
+                                                                    <div class="card" style="width: 18rem;">
+                                                                        <div class="card-body">
+                                                                            <h5 class="card-title">`+ $(".select-movie option:selected").text() + `</h5>
+                                                                            <h6 class="card-subtitle mb-2 text-muted"><strong>GENRE: </strong>`+ $(".select-movie option:selected").attr("data-genre") + `</h6>
+                                                                            <p class="card-text"> <strong>Unit price: </strong>`+ $(".movie-price").val() + `</p>
+                                                                            <p class="card-text"><strong>Quantity: </strong>`+ $(".movie-quantity").val() + `</p>
+                                                                            <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
+                                                                        </div>
+                                                                    </div> `);
+                $('.select-customer').prop('disabled', true);
             });
 
 

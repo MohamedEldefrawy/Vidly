@@ -55,7 +55,6 @@ namespace Vidly.BL.APIs
             {
                 customers = UOW.CustomerRepository.GetAll(ChildrenOfEntities.NoChildren),
                 movies = UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre),
-                user = User.Identity.IsAuthenticated
             });
         }
     }
