@@ -51,10 +51,30 @@ namespace Vidly.BL.APIs
 
         public IHttpActionResult NewREental()
         {
+            List<CustomerDTO> customersDTOs = new List<CustomerDTO>();
+            List<MovieDTO> moviesDtos = new List<MovieDTO>();
+
+            var lastIdentValue = new LastRentIdDTO()
+            {
+                LastIdentValue = UOW.RentalRepository.GetCurrentIdentValue()
+            }.LastIdentValue;
+
+
+            foreach (var customer in UOW.CustomerRepository.GetAll(ChildrenOfEntities.MemberShipType))
+            {
+                customersDTOs.Add(ObjectMapper.Mapper.Map<Customer, CustomerDTO>(customer));
+            }
+
+            foreach (var movie in UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre))
+            {
+                moviesDtos.Add(ObjectMapper.Mapper.Map<Movie, MovieDTO>(movie));
+            }
+
             return Ok(new
             {
-                customers = UOW.CustomerRepository.GetAll(ChildrenOfEntities.NoChildren),
-                movies = UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre),
+                customers = customersDTOs,
+                movies = moviesDtos,
+                lastIdentValue = lastIdentValue
             });
         }
     }

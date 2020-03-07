@@ -178,6 +178,7 @@
     <Compile Include="BL\Controllers\RentalsController.cs" />
     <Compile Include="BL\Domain\Rental.cs" />
     <Compile Include="BL\Domain\RentalDetails.cs" />
+    <Compile Include="BL\DTOs\LastRentIdDTO.cs" />
     <Compile Include="BL\DTOs\RentalDetailsDTO.cs" />
     <Compile Include="BL\DTOs\RentalDTO.cs" />
     <Compile Include="BL\NavigationPropertiesNames.cs" />
@@ -212,6 +213,14 @@
     <Compile Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs" />
     <Compile Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.designer.cs">
       <DependentUpon>202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003071455190_changeEmployeeIDDataTypeInentalsTable.cs" />
+    <Compile Include="Migrations\202003071455190_changeEmployeeIDDataTypeInentalsTable.designer.cs">
+      <DependentUpon>202003071455190_changeEmployeeIDDataTypeInentalsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs" />
+    <Compile Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.designer.cs">
+      <DependentUpon>202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -826,6 +835,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.resx">
       <DependentUpon>202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003071455190_changeEmployeeIDDataTypeInentalsTable.resx">
+      <DependentUpon>202003071455190_changeEmployeeIDDataTypeInentalsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.resx">
+      <DependentUpon>202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

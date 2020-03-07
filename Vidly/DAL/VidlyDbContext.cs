@@ -28,6 +28,8 @@ namespace Vidly.DAL
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.Add(new CustomerConfigurations());
             modelBuilder.Configurations.Add(new MoviesConfigurations());
+            modelBuilder.Configurations.Add(new RentalConfigurations());
+            modelBuilder.Configurations.Add(new RentalDetailsConfigurations());
         }
 
         public static VidlyDbContext Create()

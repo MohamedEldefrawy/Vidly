@@ -18,10 +18,10 @@ namespace Vidly.BL.Repositories
 
         public int GetCurrentIdentValue()
         {
-            var rental = context.Rentals.LastOrDefault();
+            var rental = context.Rentals.OrderByDescending(r => r.ID).FirstOrDefault();
             if (rental == null)
             {
-                throw new NullReferenceException("There are no Rentlas yet.");
+                return 0;
             }
 
             return rental.ID;

@@ -15,7 +15,7 @@ namespace Vidly.DAL.Configs
                 .IsRequired();
             Property(r => r.unitPrice)
                 .IsRequired()
-                .HasColumnType("Decimal(9,2)");
+                .HasColumnType("Decimal").HasPrecision(9,2);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Vidly.BL.Domain
     {
         public int ID { get; set; }
         public int CustomerID { get; set; }
-        public int EmployeeID { get; set; }
+        public string EmployeeID { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 

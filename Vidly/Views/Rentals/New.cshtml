@@ -1,15 +1,18 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@{
     ViewBag.Title = "New Rental Form";
 }
 
 <h2>New Rental</h2>
 
-<div class="row">
-    <div class="col-lg-6 col-md-6 rent-form">
-        <form>
+<input type="hidden" id="LastIdentValue" />
+<form>
+    <div class="row">
+
+        <div class="col-lg-6 col-md-6 rent-form">
             <div class="form-group">
                 <label>Employee</label>
-                <input type="text" disabled="disabled" class="form-control" value="@User.Identity.Name" />
+                <input type="text" disabled="disabled" class="form-control employee" value="@User.Identity.Name" data-id="@User.Identity.GetUserId()" />
             </div>
 
             <div class="form-group">
@@ -44,18 +47,22 @@
                 </div>
 
             </div>
-        </form>
-        <div>
-            <button class="btn btn-primary btn-add-movie">Add To Cart</button>
+
+            <div>
+                <button class="btn btn-primary btn-add-movie" type="button">Add To Cart</button>
+                <button class="btn btn-warning btn-confirm" type="button" disabled="disabled">Confirm</button>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 shopping-cart">
+
+
+
         </div>
     </div>
 
-    <div class="col-lg-6 col-md-6 shopping-cart">
+</form>
 
-
-
-    </div>
-</div>
 
 @section scripts{
     <script>
@@ -89,28 +96,95 @@
 
                     for (let movie of result.movies) {
                         $(".select-movie")
-                            .append(`<option data-genre="` + movie.genre.name + `" value="` + movie["id"] + `">` + movie["name"] + `</option>`);
+                            .append(`<option data-genre="` +
+                                movie.genre.name +
+                                `" value="` +
+                                movie["id"] +
+                                `">` +
+                                movie["name"] +
+                                `</option>`);
 
                     }
+
+                    $("#LastIdentValue").val(result.lastIdentValue);
 
                 }
             });
 
-            $(".btn-add-movie").on("click", function () {
+            $(".btn-add-movie").on("click",
+                function () {
 
-                $(".shopping-cart").append(`
-                                                                    <div class="card" style="width: 18rem;">
-                                                                        <div class="card-body">
-                                                                            <h5 class="card-title">`+ $(".select-movie option:selected").text() + `</h5>
-                                                                            <h6 class="card-subtitle mb-2 text-muted"><strong>GENRE: </strong>`+ $(".select-movie option:selected").attr("data-genre") + `</h6>
-                                                                            <p class="card-text"> <strong>Unit price: </strong>`+ $(".movie-price").val() + `</p>
-                                                                            <p class="card-text"><strong>Quantity: </strong>`+ $(".movie-quantity").val() + `</p>
-                                                                            <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
-                                                                        </div>
-                                                                    </div> `);
-                $('.select-customer').prop('disabled', true);
-            });
+                    $(".shopping-cart").append(
+                        `
+                                        <div class="card"  data-price ="${$(".movie-price").val()}" data-quantity="${
+                        $(".movie-quantity").val()}"   style="width: 18rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${$(".select-movie option:selected").text()}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">
+                                                    <strong>GENRE: </strong>${$(".select-movie option:selected").attr("data-genre")}
+                                                </h6>
+                                                <p class="card-text">
+                                                    <strong>Unit price: </strong>
+                                                    ${$(".movie-price").val()}
 
+                                                </p>
+                                                <p class="card-text">
+                                                    <strong>Quantity: </strong>
+                                                    ${$(".movie-quantity").val()}
+                                                </p>
+                                                <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
+                                            </div>
+                                        </div>
+                    `);
+                    $('.select-customer').prop('disabled', true);
+                    $('.btn-confirm').prop('disabled', false);
+                });
+
+            $(".shopping-cart").on("click",
+                ".btn-remove-from-cart",
+                function () {
+                    console.log($(this).parents(".card"));
+                    $(this).parents(".card").remove();
+
+                    if ($(".shopping-cart").children().length === 0) {
+                        $('.select-customer').prop('disabled', false);
+                        $('.btn-confirm').prop('disabled', true);
+
+                    }
+                });
+
+            $('.btn-confirm').on('click',
+                function () {
+
+                    let rentalDetails = [];
+
+                    for (let i = 0; i < $(".shopping-cart").children().length; i++) {
+                        rentalDetails.push({
+                            "rentalID": parseInt($("#LastIdentValue").val()) + 1,
+                            "movieID": $(".select-movie option:selected").val(),
+                            "unitPrice": $(".shopping-cart").children()[i].getAttribute("data-price"),
+                            "quantity": $(".shopping-cart").children()[i].getAttribute("data-quantity")
+                        });
+                    }
+
+                    const data = {
+                        "customerID": $(".select-customer option:selected").val(),
+                        "employeeID": $(".employee").attr('data-id'),
+                        "rentDate": $('.rent-date').val(),
+                        "rentalDetails": rentalDetails
+                    };
+
+                    $.ajax({
+                        url: '/api/newrentals',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data:  JSON.stringify(data),
+                        success: function () {
+                            console.log("Order confirmed");
+                        }
+                    });
+
+                });
 
         });
     </script>

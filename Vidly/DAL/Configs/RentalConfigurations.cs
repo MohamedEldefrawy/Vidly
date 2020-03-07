@@ -11,12 +11,17 @@ namespace Vidly.DAL.Configs
     {
         public RentalConfigurations()
         {
+            HasRequired<ApplicationUser>(a => a.User)
+                .WithMany(r => r.Rentals).HasForeignKey<string>(r => r.EmployeeID);
             Property(r => r.RentDate)
                 .IsRequired()
                 .HasColumnType("Date");
             Property(r => r.ReturnDate)
                 .IsOptional()
                 .HasColumnType("Date");
+            Property(r => r.EmployeeID)
+                .HasColumnType("nvarchar")
+                .HasMaxLength(128);
         }
     }
 }

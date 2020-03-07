@@ -10,11 +10,11 @@ namespace Vidly.BL.DTOs
     {
         public int ID { get; set; }
         public int CustomerID { get; set; }
-        public int EmployeeID { get; set; }
+        public string EmployeeID { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
-        public IEnumerable<RentalDetailsDTO> RentalDetails { get; set; }
+        public ICollection<RentalDetailsDTO> RentalDetails { get; set; }
     }
 
 
