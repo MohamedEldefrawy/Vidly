@@ -18,7 +18,8 @@
             <div class="form-group">
                 <label>Customer</label>
                 <div class="tt-container">
-                    <input id="customer" type="text" class="form-control">
+                    <input id="customer" type="text" required class="form-control">
+                    <label id="customer-validation-msg">please insert a valid customer</label>
                 </div>
             </div>
 
@@ -33,16 +34,22 @@
                 <div class="form-group">
                     <label>Movie</label>
                     <div class="tt-container">
-                        <input id="movie" class="form-control" type="text" />
+                        <input id="movie" class="form-control" type="text" required />
+                        <label id="movie-validation-msg">please insert a valid movie</label>
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Unit price</label>
-                    <input type="number" class="form-control movie-price" />
+                    <input type="number" class="form-control movie-price" required />
+                    <label id="price-validation-msg">please insert a valid price</label>
+
                 </div>
                 <div class="form-group">
                     <label>quantity</label>
-                    <input type="number" class="form-control movie-quantity" />
+                    <input type="number" class="form-control movie-quantity" required />
+                    <label id="quantity-validation-msg">please insert a valid quantity</label>
+
                 </div>
 
             </div>
@@ -64,162 +71,208 @@
 @section scripts{
     @Scripts.Render("~/Scripts/newRentals.js")
     <script>
-       $(document).ready(function () {
-    var vm = {};
+        $(document).ready(function () {
+            var vm = {};
 
-    // change date format to assign it to date input
-    function setDate(date) {
+            function validation() {
+                var customer = $("#customer").val();
+                var movie = $("#movie").val();
+                var price = $(".movie-price").val();
+                var quantity = $(".movie-quantity").val();
 
-        var actualDate = new Date(date);
+                var isValid = true;
 
-        var day = actualDate.getDate(),
-            month = actualDate.getMonth() + 1,
-            year = actualDate.getFullYear();
+                if (customer === null || customer === "") {
+                    $("#customer-validation-msg").css("visibility", "visible");
+                    isValid = false;
+                } else {
+                    $("#customer-validation-msg").css("visibility", "hidden");
+                }
 
-        month = (month < 10 ? "0" : "") + month;
-        day = (day < 10 ? "0" : "") + day;
+                if (movie === null || movie === "") {
+                    $("#movie-validation-msg").css("visibility", "visible");
+                    isValid = false;
+                } else {
+                    $("#movie-validation-msg").css("visibility", "hidden");
+                }
 
-        return year + "-" + month + "-" + day;
-    }
+                if (price === null || price === "") {
+                    $("#price-validation-msg").css("visibility", "visible");
+                    isValid = false;
+                } else {
+                    $("#price-validation-msg").css("visibility", "hidden");
+                }
 
-    //get last rent ident value
-    $.ajax({
-        url: "/api/newrentals",
-        method: "GET",
-        success: function (result) {
-            $("#LastIdentValue").val(result.lastIdentValue);
-            $(".rent-date").val(setDate(Date.now()));
-        }
-    });
+                if (quantity === null || quantity === "") {
+                    $("#quantity-validation-msg").css("visibility", "visible");
+                    isValid = false;
+                } else {
+                    $("#quantity-validation-msg").css("visibility", "hidden");
+                }
 
-
-    // Movies Auto Complete
-    var movies = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "/api/movies",
-        remote: {
-            url: '/api/movies?query=%QUERY',
-            method: "GET",
-            wildcard: '%QUERY'
-        }
-    });
-
-    $('#movie').typeahead({
-        minLength: 1,
-        highlight: true,
-        hitnt: true
-    }, {
-        name: 'movies',
-        display: 'name',
-        source: movies
-    }).on('typeahead:select', function (e, movie) {
-        vm.movieID = movie.id;
-        vm.movieName = movie.name;
-        vm.movieGenre = movie.genre.name;
-        console.log(vm);
-    });
-
-
-    // Customer Auto Complete
-    var customers = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "/api/customers",
-        remote: {
-            url: '/api/customers?query=%QUERY',
-            method: "GET",
-            wildcard: '%QUERY'
-        }
-    });
-
-    $('#customer').typeahead({
-        minLength: 1,
-        highlight: true,
-        hint: true
-    }, {
-        name: 'customer',
-        display: 'name',
-        source: customers
-    }).on('typeahead:select', function (e, customer) {
-        vm.customerID = customer.id;
-    });
-
-    // remove movie from cart
-    $(".shopping-cart").on("click",
-        ".btn-remove-from-cart",
-        function () {
-            console.log($(this).parents(".card"));
-            $(this).parents(".card").remove();
-
-            if ($(".shopping-cart").children().length === 0) {
-                $('.select-customer').prop('disabled', false);
-                $('.btn-confirm').prop('disabled', true);
-            }
-        });
-
-    // Confirmation
-    $('.btn-confirm').on('click',
-        function () {
-
-            let rentalDetails = [];
-
-            for (let i = 0; i < $(".shopping-cart").children().length; i++) {
-                rentalDetails.push({
-                    "rentalID": parseInt($("#LastIdentValue").val()) + 1,
-                    "movieID": $(".shopping-cart").children()[0].getAttribute("id"),
-                    "unitPrice": $(".shopping-cart").children()[i].getAttribute("data-price"),
-                    "quantity": $(".shopping-cart").children()[i].getAttribute("data-quantity")
-                });
+                return isValid;
             }
 
-            const data = {
-                "customerID": vm.customerID,
-                "employeeID": $(".employee").attr('data-id'),
-                "rentDate": $('.rent-date').val(),
-                "rentalDetails": rentalDetails
-            };
+            // change date format to assign it to date input
+            function setDate(date) {
 
+                var actualDate = new Date(date);
+
+                var day = actualDate.getDate(),
+                    month = actualDate.getMonth() + 1,
+                    year = actualDate.getFullYear();
+
+                month = (month < 10 ? "0" : "") + month;
+                day = (day < 10 ? "0" : "") + day;
+
+                return year + "-" + month + "-" + day;
+            }
+
+            //get last rent ident value
             $.ajax({
-                url: '/api/newrentals',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                success: function () {
-                    console.log("Order confirmed");
+                url: "/api/newrentals",
+                method: "GET",
+                success: function (result) {
+                    $("#LastIdentValue").val(result.lastIdentValue);
+                    $(".rent-date").val(setDate(Date.now()));
                 }
             });
 
+
+            // Movies Auto Complete
+            var movies = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: "/api/movies",
+                remote: {
+                    url: '/api/movies?query=%QUERY',
+                    method: "GET",
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#movie').typeahead({
+                minLength: 1,
+                highlight: true,
+                hitnt: true
+            }, {
+                name: 'movies',
+                display: 'name',
+                source: movies
+            }).on('typeahead:select', function (e, movie) {
+                vm.movieID = movie.id;
+                vm.movieName = movie.name;
+                vm.movieGenre = movie.genre.name;
+                console.log(vm);
+            });
+
+
+            // Customer Auto Complete
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: "/api/customers",
+                remote: {
+                    url: '/api/customers?query=%QUERY',
+                    method: "GET",
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#customer').typeahead({
+                minLength: 1,
+                highlight: true,
+                hint: true
+            }, {
+                name: 'customer',
+                display: 'name',
+                source: customers
+            }).on('typeahead:select', function (e, customer) {
+                vm.customerID = customer.id;
+            });
+
+            // remove movie from cart
+            $(".shopping-cart").on("click",
+                ".btn-remove-from-cart",
+                function () {
+                    console.log($(this).parents(".card"));
+                    $(this).parents(".card").remove();
+
+                    if ($(".shopping-cart").children().length === 0) {
+                        $('.select-customer').prop('disabled', false);
+                        $('.btn-confirm').prop('disabled', true);
+                    }
+                });
+
+            // Confirmation
+            $('.btn-confirm').on('click',
+                function () {
+
+                    let rentalDetails = [];
+
+                    for (let i = 0; i < $(".shopping-cart").children().length; i++) {
+                        rentalDetails.push({
+                            "rentalID": parseInt($("#LastIdentValue").val()) + 1,
+                            "movieID": $(".shopping-cart").children()[0].getAttribute("id"),
+                            "unitPrice": $(".shopping-cart").children()[i].getAttribute("data-price"),
+                            "quantity": $(".shopping-cart").children()[i].getAttribute("data-quantity")
+                        });
+                    }
+
+                    const data = {
+                        "customerID": vm.customerID,
+                        "employeeID": $(".employee").attr('data-id'),
+                        "rentDate": $('.rent-date').val(),
+                        "rentalDetails": rentalDetails
+                    };
+
+                    $.ajax({
+                        url: '/api/newrentals',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                    }).done(function () {
+                        toastr.success("Rentals successfully recorded");
+                    }).fail(function () {
+                        toastr.error("Something unexpected happen");
+                    });
+
+                });
+
+
+            // Adding movie to cart
+            $(".btn-add-movie").click(function (e) {
+                validation();
+                if (validation() === false) {
+                    validation();
+                } else {
+                    $(".shopping-cart").append(
+                        `<div id="${vm.movieID}" class="card"  data-price ="${$(".movie-price").val()}" data-quantity="${
+                        $(".movie-quantity").val()}" style="width: 18rem;">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">${vm.movieName}</h5>
+                                                            <h6 class="card-subtitle mb-2 text-muted">
+                                                                <strong>GENRE: </strong>${vm.movieGenre}
+                                                            </h6>
+                                                            <p class="card-text">
+                                                                <strong>Unit price: </strong>
+                                                                ${$(".movie-price").val()}
+                                                            </p>
+                                                            <p class="card-text">
+                                                                <strong>Quantity: </strong>
+                                                                ${$(".movie-quantity").val()}
+                                                            </p>
+                                                            <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
+                                                        </div>
+                                                    </div>`);
+                }
+
+
+                console.log("fired");
+                $('.select-customer').prop('disabled', true);
+                $('.btn-confirm').prop('disabled', false);
+            });
+
         });
-
-
-    // Adding movie to cart
-    $(".btn-add-movie").click(function (e) {
-        $(".shopping-cart").append(
-            `<div id="${vm.movieID}" class="card"  data-price ="${$(".movie-price").val()}" data-quantity="${
-            $(".movie-quantity").val()}" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">${vm.movieName}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    <strong>GENRE: </strong>${vm.movieGenre}
-                                </h6>
-                                <p class="card-text">
-                                    <strong>Unit price: </strong>
-                                    ${$(".movie-price").val()}
-                                </p>
-                                <p class="card-text">
-                                    <strong>Quantity: </strong>
-                                    ${$(".movie-quantity").val()}
-                                </p>
-                                <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
-                            </div>
-                        </div>`);
-
-        console.log("fired");
-        $('.select-customer').prop('disabled', true);
-        $('.btn-confirm').prop('disabled', false);
-    });
-
-});
     </script>
 }
