@@ -20,10 +20,16 @@ namespace Vidly.BL.APIs
         //GET api/movies
         [HttpGet]
 
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            return Ok(UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre)
-                .Select(objectMapper.Mapper.Map<Movie, MovieDTO>));
+            var movieQuery = UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre);
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                movieQuery = movieQuery.Where(m => m.Name.Contains(query)).ToList();
+            }
+
+            var movieDTOs = movieQuery.Select(objectMapper.Mapper.Map<Movie, MovieDTO>);
+            return Ok(movieDTOs);
         }
 
         //GET api/movies/(id)

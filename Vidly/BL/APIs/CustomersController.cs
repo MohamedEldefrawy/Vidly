@@ -22,12 +22,20 @@ namespace Vidly.BL.APIs
 
         //Get api/customers
         [HttpGet]
-        public IHttpActionResult GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
+            var customerQuery = UOW.CustomerRepository.GetAll(ChildrenOfEntities.NoChildren);
+
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                customerQuery = customerQuery.Where(c => c.Name.Contains(query)).ToList();
+            }
             //var customers = UOW.CustomerRepository.GetAll("MemberShipType");
             //CustomerDTO customerDTO = new CustomerDTO
-            return Ok(UOW.CustomerRepository.GetAll("MemberShipType")
-                .Select(objectMapper.Mapper.Map<Customer, CustomerDTO>));
+
+            var customerDTOs = customerQuery.Select(objectMapper.Mapper.Map<Customer, CustomerDTO>);
+
+            return Ok(customerDTOs);
         }
 
         //Get api/customers/id
