@@ -51,8 +51,6 @@ namespace Vidly.BL.APIs
 
         public IHttpActionResult NewREental()
         {
-            List<CustomerDTO> customersDTOs = new List<CustomerDTO>();
-            List<MovieDTO> moviesDtos = new List<MovieDTO>();
 
             var lastIdentValue = new LastRentIdDTO()
             {
@@ -60,20 +58,8 @@ namespace Vidly.BL.APIs
             }.LastIdentValue;
 
 
-            foreach (var customer in UOW.CustomerRepository.GetAll(ChildrenOfEntities.MemberShipType))
-            {
-                customersDTOs.Add(ObjectMapper.Mapper.Map<Customer, CustomerDTO>(customer));
-            }
-
-            foreach (var movie in UOW.MovieRepository.GetAll(ChildrenOfEntities.Genre))
-            {
-                moviesDtos.Add(ObjectMapper.Mapper.Map<Movie, MovieDTO>(movie));
-            }
-
             return Ok(new
             {
-                customers = customersDTOs,
-                movies = moviesDtos,
                 lastIdentValue = lastIdentValue
             });
         }

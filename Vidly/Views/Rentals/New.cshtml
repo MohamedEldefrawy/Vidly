@@ -17,9 +17,7 @@
 
             <div class="form-group">
                 <label>Customer</label>
-                <select class="form-control select-customer">
-                    <option> Select Customer</option>
-                </select>
+                <input id="customer" type="text" class="form-control">
             </div>
 
             <div class="form-group">
@@ -32,10 +30,7 @@
             <div class="add-movie-section">
                 <div class="form-group">
                     <label>Movie</label>
-                    <select class="form-control select-movie">
-                        <option>Select Movie</option>
-                    </select>
-
+                    <input id="movie" class="form-control" type="text" />
                 </div>
                 <div class="form-group">
                     <label>Unit price</label>
@@ -54,6 +49,8 @@
             </div>
 
         </div>
+        
+        @* Shopping Cart section *@
         <div class="col-lg-6 col-md-6 shopping-cart">
 
 
@@ -63,129 +60,6 @@
 
 </form>
 
-
 @section scripts{
-    <script>
-        $(document).ready(function () {
-
-            function setDate(date) {
-
-                var actualDate = new Date(date);
-
-                var day = actualDate.getDate(),
-                    month = actualDate.getMonth() + 1,
-                    year = actualDate.getFullYear()
-
-                month = (month < 10 ? "0" : "") + month;
-                day = (day < 10 ? "0" : "") + day;
-
-                return year + "-" + month + "-" + day;
-            }
-
-
-            $.ajax({
-                url: "/api/newrentals",
-                method: "GET",
-                success: function (result) {
-                    for (let customer of result.customers) {
-                        $(".select-customer")
-                            .append(`<option value="` + customer["id"] + `">` + customer["name"] + `</option>`);
-                    }
-
-                    $(".rent-date").val(setDate(Date.now()));
-
-                    for (let movie of result.movies) {
-                        $(".select-movie")
-                            .append(`<option data-genre="` +
-                                movie.genre.name +
-                                `" value="` +
-                                movie["id"] +
-                                `">` +
-                                movie["name"] +
-                                `</option>`);
-
-                    }
-
-                    $("#LastIdentValue").val(result.lastIdentValue);
-
-                }
-            });
-
-            $(".btn-add-movie").on("click",
-                function () {
-
-                    $(".shopping-cart").append(
-                        `
-                                        <div class="card"  data-price ="${$(".movie-price").val()}" data-quantity="${
-                        $(".movie-quantity").val()}"   style="width: 18rem;">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${$(".select-movie option:selected").text()}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">
-                                                    <strong>GENRE: </strong>${$(".select-movie option:selected").attr("data-genre")}
-                                                </h6>
-                                                <p class="card-text">
-                                                    <strong>Unit price: </strong>
-                                                    ${$(".movie-price").val()}
-
-                                                </p>
-                                                <p class="card-text">
-                                                    <strong>Quantity: </strong>
-                                                    ${$(".movie-quantity").val()}
-                                                </p>
-                                                <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
-                                            </div>
-                                        </div>
-                    `);
-                    $('.select-customer').prop('disabled', true);
-                    $('.btn-confirm').prop('disabled', false);
-                });
-
-            $(".shopping-cart").on("click",
-                ".btn-remove-from-cart",
-                function () {
-                    console.log($(this).parents(".card"));
-                    $(this).parents(".card").remove();
-
-                    if ($(".shopping-cart").children().length === 0) {
-                        $('.select-customer').prop('disabled', false);
-                        $('.btn-confirm').prop('disabled', true);
-
-                    }
-                });
-
-            $('.btn-confirm').on('click',
-                function () {
-
-                    let rentalDetails = [];
-
-                    for (let i = 0; i < $(".shopping-cart").children().length; i++) {
-                        rentalDetails.push({
-                            "rentalID": parseInt($("#LastIdentValue").val()) + 1,
-                            "movieID": $(".select-movie option:selected").val(),
-                            "unitPrice": $(".shopping-cart").children()[i].getAttribute("data-price"),
-                            "quantity": $(".shopping-cart").children()[i].getAttribute("data-quantity")
-                        });
-                    }
-
-                    const data = {
-                        "customerID": $(".select-customer option:selected").val(),
-                        "employeeID": $(".employee").attr('data-id'),
-                        "rentDate": $('.rent-date').val(),
-                        "rentalDetails": rentalDetails
-                    };
-
-                    $.ajax({
-                        url: '/api/newrentals',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data:  JSON.stringify(data),
-                        success: function () {
-                            console.log("Order confirmed");
-                        }
-                    });
-
-                });
-
-        });
-    </script>
+    @Scripts.Render("~/Scripts/newRentals.js")
 }
