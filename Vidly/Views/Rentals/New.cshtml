@@ -163,7 +163,6 @@
                 vm.movieID = movie.id;
                 vm.movieName = movie.name;
                 vm.movieGenre = movie.genre.name;
-                console.log(vm);
             });
 
 
@@ -233,6 +232,11 @@
                         data: JSON.stringify(data),
                     }).done(function () {
                         toastr.success("Rentals successfully recorded");
+                        $("#customer").typeahead("val", "");
+                        $("#movie").typeahead("val", "");
+                        $(".movie-price").val("");
+                        $(".movie-quantity").val("");
+                        $(".shopping-cart").empty();
                     }).fail(function () {
                         toastr.error("Something unexpected happen");
                     });
@@ -249,22 +253,22 @@
                     $(".shopping-cart").append(
                         `<div id="${vm.movieID}" class="card"  data-price ="${$(".movie-price").val()}" data-quantity="${
                         $(".movie-quantity").val()}" style="width: 18rem;">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">${vm.movieName}</h5>
-                                                            <h6 class="card-subtitle mb-2 text-muted">
-                                                                <strong>GENRE: </strong>${vm.movieGenre}
-                                                            </h6>
-                                                            <p class="card-text">
-                                                                <strong>Unit price: </strong>
-                                                                ${$(".movie-price").val()}
-                                                            </p>
-                                                            <p class="card-text">
-                                                                <strong>Quantity: </strong>
-                                                                ${$(".movie-quantity").val()}
-                                                            </p>
-                                                            <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
-                                                        </div>
-                                                    </div>`);
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">${vm.movieName}</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">
+                                                                    <strong>GENRE: </strong>${vm.movieGenre}
+                                                                </h6>
+                                                                <p class="card-text">
+                                                                    <strong>Unit price: </strong>
+                                                                    ${$(".movie-price").val()}
+                                                                </p>
+                                                                <p class="card-text">
+                                                                    <strong>Quantity: </strong>
+                                                                    ${$(".movie-quantity").val()}
+                                                                </p>
+                                                                <button class="btn btn-danger card-link btn-remove-from-cart">Remove From Cart</button>
+                                                            </div>
+                                                        </div>`);
                 }
 
 
