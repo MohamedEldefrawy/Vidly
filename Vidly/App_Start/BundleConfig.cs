@@ -33,7 +33,8 @@ namespace Vidly
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
                       "~/Content/site.css",
                       "~/Content/typeahead.css",
-                      "~/Content/toastr.css"));
+                      "~/Content/toastr.css",
+                      "~/Content/font-awesome.css"));
         }
     }
 }
