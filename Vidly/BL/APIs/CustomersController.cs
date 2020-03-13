@@ -24,7 +24,7 @@ namespace Vidly.BL.APIs
         [HttpGet]
         public IHttpActionResult GetCustomers(string query = null)
         {
-            var customerQuery = UOW.CustomerRepository.GetAll(ChildrenOfEntities.NoChildren);
+            var customerQuery = UOW.CustomerRepository.GetAll(ChildrenOfEntities.MemberShipType);
 
             if (!string.IsNullOrWhiteSpace(query))
             {
