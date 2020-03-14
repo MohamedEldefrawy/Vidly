@@ -18,6 +18,8 @@ namespace Vidly.BL.UOW
         IRentalRepository RentalRepository { get; }
 
         IRentalDetailsRepository RentalDetailsRepository { get; }
+
+        IUserRepository UserRepository { get; }
         int Complete();
     }
 }

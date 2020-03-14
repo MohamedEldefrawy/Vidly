@@ -20,7 +20,7 @@ namespace Vidly.BL.Repositories
             this.context.Set<TEntity>().Add(entity);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, string children)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, string children = "NO")
         {
             if (children.ToUpper() == "NO")
             {

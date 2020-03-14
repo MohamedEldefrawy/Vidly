@@ -497,5 +497,11 @@ namespace Vidly.BL.Controllers
             }
         }
         #endregion
+
+        [HttpGet]
+        public ActionResult Profile(string userName)
+        {
+            return View();
+        }
     }
 }

@@ -25,6 +25,8 @@ namespace Vidly.BL
                 cfg.CreateMap<RentalDTO, Rental>();
                 cfg.CreateMap<RentalDetails, RentalDetailsDTO>();
                 cfg.CreateMap<RentalDetailsDTO, RentalDetails>();
+                cfg.CreateMap<ApplicationUser, UserDTO>();
+                cfg.CreateMap<UserDTO, ApplicationUser>();
             });
 
             this.Mapper = config.CreateMapper();

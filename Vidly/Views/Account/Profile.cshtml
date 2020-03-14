@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profile Details</h2>
+<div class="form-group">
+    <label style="display: none">ID</label>
+    <input style="display: none" id="iD" type="text" disabled="disabled" class="form-control" />
+
+    <label>Name</label>
+    <input id="name" type="text" class="form-control" />
+
+    <label>Email</label>
+    <input id="email" disabled="disabled" type="email" class="form-control" />
+
+    <label>Phone</label>
+    <input id="phone" type="tel" class="form-control" />
+
+    <label>Driving license</label>
+    <input id="drivingLicense" type="text" class="form-control" />
+</div>
+<div>
+    <button id="btnSave" class="btn btn-primary"> Save</button>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var path = window.location.pathname.split('/');
+
+            $.ajax({
+                url: "/api/profiles?userName=" + path[path.length - 1],
+                method: "GET"
+            }).done(function (response) {
+                console.log(response);
+                $("#id").val(response.id);
+                $("#name").val(response.userName);
+                $("#drivingLicense").val(response.drivingLicense);
+                $("#phone").val(response.phoneNumber);
+                $("#email").val(response.email);
+            }).fail(function (response) {
+                $("h2").innerHTML = response.message;
+            });
+        });
+    </script>
+}

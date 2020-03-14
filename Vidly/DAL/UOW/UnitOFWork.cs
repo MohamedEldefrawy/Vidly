@@ -23,6 +23,8 @@ namespace Vidly.DAL.UOW
 
         public IRentalDetailsRepository RentalDetailsRepository { get; set; }
 
+        public IUserRepository UserRepository { get; set; }
+
         private readonly VidlyDbContext VidlyModel;
 
         public UnitOFWork(VidlyDbContext VidlyModel)
@@ -34,6 +36,7 @@ namespace Vidly.DAL.UOW
             this.GenreRepository = new GenreRepository(VidlyModel);
             this.RentalRepository = new RentalRepository(VidlyModel);
             this.RentalDetailsRepository = new RentalDetailsRepository(VidlyModel);
+            this.UserRepository = new UsersRepository(VidlyModel);
         }
 
         public int Complete()
