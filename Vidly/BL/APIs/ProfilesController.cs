@@ -31,5 +31,31 @@ namespace Vidly.BL.APIs
 
             return Ok(selectedUserDto);
         }
+
+        [HttpPut]
+        public IHttpActionResult UpdateProfile(string id, UserDTO userDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var selectedUser = UOW.UserRepository.Find(u => u.Id == id, ChildrenOfEntities.NoChildren)
+                .SingleOrDefault();
+
+            if (selectedUser == null)
+            {
+                return NotFound();
+            }
+
+            var user = ObjectMapper.Mapper.Map<UserDTO, ApplicationUser>(userDto);
+
+            user.Id = id;
+
+            UOW.UserRepository.Update(user);
+            UOW.Complete();
+            UOW.Dispose();
+
+            return Ok();
+        }
     }
 }
