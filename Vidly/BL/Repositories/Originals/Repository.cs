@@ -34,6 +34,20 @@ namespace Vidly.BL.Repositories
             }
         }
 
+        public IEnumerable<TEntity> FindAsNoTracking(Expression<Func<TEntity, bool>> predicate, string children = "NO")
+        {
+            if (children.ToUpper() == "NO")
+            {
+                return this.context.Set<TEntity>().AsNoTracking().Where<TEntity>(predicate);
+
+            }
+            else
+            {
+                return this.context.Set<TEntity>().Include(children).AsNoTracking().Where<TEntity>(predicate);
+
+            }
+        }
+
 
         public List<TEntity> GetAll(string children)
         {

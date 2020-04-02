@@ -6,8 +6,7 @@
 
 <h2>Profile Details</h2>
 <div class="form-group">
-    <label style="display: none">ID</label>
-    <input style="display: none" id="iD" type="text" disabled="disabled" class="form-control" />
+    <input style="display: none" id="userId" type="text" disabled="disabled" class="form-control" />
 
     <label>Name</label>
     <input id="name" type="text" class="form-control" />
@@ -34,7 +33,7 @@
                 method: "GET"
             }).done(function (response) {
                 console.log(response);
-                $("#id").val(response.id);
+                $("#userId").val(response.id);
                 $("#name").val(response.userName);
                 $("#drivingLicense").val(response.drivingLicense);
                 $("#phone").val(response.phoneNumber);
@@ -42,6 +41,26 @@
             }).fail(function (response) {
                 $("h2").innerHTML = response.message;
             });
+
+            $("#btnSave").on("click",
+                function () {
+
+                    var data =
+                    {
+                        "id":$("#userId").val(),
+                        "userName": $("#name").val(),
+                        "email":$("#email").val(),
+                        "phoneNumber": $("#phone").val(),
+                        "drivingLicense": $("#drivingLicense").val()
+                    };
+
+                    $.ajax({
+                        url: '/api/profiles?id='+$("#userId").val(),
+                        method: "PUT",
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                    });
+                });
         });
     </script>
 }

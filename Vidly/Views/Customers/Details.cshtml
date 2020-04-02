@@ -87,7 +87,7 @@
         $.ajax({
             url: "/api/customers/" + getID(),
             method: "GET",
-            success: function (data) {
+            success: function(data) {
                 $("#Customer_Name").val(data.name);
                 $("#Customer_BirthDate").val(setDate(data.birthDate));
                 $("#Customer_MemmberShipTypeID").val(data.memmberShipTypeID);
@@ -99,6 +99,6 @@
                 }
 
             }
-        })
+        });
     </script>  }
 

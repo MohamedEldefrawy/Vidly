@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Vidly.BL.Domain;
 using Vidly.DAL;
+using System.Data.Entity.Migrations;
 
 namespace Vidly.BL.Repositories
 {
@@ -20,6 +21,7 @@ namespace Vidly.BL.Repositories
         public void Update(ApplicationUser user)
         {
             this.context.Users.Attach(user);
+
             this.context.Entry(user).State = EntityState.Modified;
         }
     }

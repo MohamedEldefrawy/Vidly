@@ -104,7 +104,7 @@ namespace Vidly.BL.APIs
 
         public IHttpActionResult DeleteCustomer(int id)
         {
-            var selectedCustomer = UOW.CustomerRepository.Find(c => c.ID == id, ChildrenOfEntities.NoChildren).SingleOrDefault();
+            var selectedCustomer = UOW.CustomerRepository.Find(c => c.ID == id).SingleOrDefault();
 
             if (selectedCustomer == null)
             {

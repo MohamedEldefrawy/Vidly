@@ -45,7 +45,7 @@ namespace Vidly.Controllers
                 var ViewModel = new MoviesViewModel()
                 {
                     Movie = movie,
-                    Genres = UOW.GenreRepository.GetAll(ChildrenOfEntities.NoChildren)
+                    Genres = UOW.GenreRepository.GetAll()
                 };
 
                 return View("New", ViewModel);
@@ -73,7 +73,7 @@ namespace Vidly.Controllers
 
             MoviesViewModel moviesView = new MoviesViewModel()
             {
-                Genres = UOW.GenreRepository.GetAll(ChildrenOfEntities.NoChildren),
+                Genres = UOW.GenreRepository.GetAll(),
             };
 
             return View(moviesView);
@@ -90,7 +90,7 @@ namespace Vidly.Controllers
                 var ViewModel = new MoviesViewModel()
                 {
                     Movie = movie,
-                    Genres = UOW.GenreRepository.GetAll(ChildrenOfEntities.NoChildren)
+                    Genres = UOW.GenreRepository.GetAll()
                 };
 
                 return View("New", ViewModel);

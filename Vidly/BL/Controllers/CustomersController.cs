@@ -45,7 +45,7 @@ namespace Vidly.Controllers
                 var ViewModel = new CustomerViewModel()
                 {
                     Customer = customer,
-                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll(ChildrenOfEntities.NoChildren)
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll()
                 };
 
                 return View("Details", ViewModel);
@@ -64,7 +64,7 @@ namespace Vidly.Controllers
             var ViewModel = new CustomerViewModel
             {
                 Customer = new Customer(),
-                MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll(ChildrenOfEntities.NoChildren)
+                MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll()
 
             };
 
@@ -83,7 +83,7 @@ namespace Vidly.Controllers
                 var ViewModel = new CustomerViewModel()
                 {
                     Customer = customer,
-                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll(ChildrenOfEntities.NoChildren)
+                    MemmberShipTypes = UOW.MemmberShipTypeRepository.GetAll()
                 };
 
                 return View("New", ViewModel);

@@ -31,7 +31,7 @@ namespace Vidly.BL.APIs
 
             foreach (var rentDetail in rentalDto.RentalDetails)
             {
-                if (UOW.MovieRepository.Find(m => m.ID == rentDetail.MovieID, ChildrenOfEntities.NoChildren)
+                if (UOW.MovieRepository.Find(m => m.ID == rentDetail.MovieID)
                     .SingleOrDefault().NumberInStock < rentDetail.quantity)
                 {
                     return BadRequest("Movie is not available");

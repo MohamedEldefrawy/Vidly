@@ -8,6 +8,7 @@ using Vidly.BL.Domain;
 using Vidly.BL.DTOs;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
+using System.Data.Entity;
 
 namespace Vidly.BL.APIs
 {
@@ -39,7 +40,7 @@ namespace Vidly.BL.APIs
             {
                 return BadRequest();
             }
-            var selectedUser = UOW.UserRepository.Find(u => u.Id == id, ChildrenOfEntities.NoChildren)
+            var selectedUser = UOW.UserRepository.FindAsNoTracking(u => u.Id == id)
                 .SingleOrDefault();
 
             if (selectedUser == null)
@@ -47,11 +48,11 @@ namespace Vidly.BL.APIs
                 return NotFound();
             }
 
-            var user = ObjectMapper.Mapper.Map<UserDTO, ApplicationUser>(userDto);
+            ObjectMapper.Mapper.Map<UserDTO, ApplicationUser>(userDto, selectedUser);
 
-            user.Id = id;
+            selectedUser.Id = id;
 
-            UOW.UserRepository.Update(user);
+            UOW.UserRepository.Update(selectedUser);
             UOW.Complete();
             UOW.Dispose();
 
