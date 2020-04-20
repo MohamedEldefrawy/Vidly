@@ -30,8 +30,6 @@ namespace Vidly.BL.APIs
             {
                 customerQuery = customerQuery.Where(c => c.Name.Contains(query)).ToList();
             }
-            //var customers = UOW.CustomerRepository.GetAll("MemberShipType");
-            //CustomerDTO customerDTO = new CustomerDTO
 
             var customerDTOs = customerQuery.Select(objectMapper.Mapper.Map<Customer, CustomerDTO>);
 
