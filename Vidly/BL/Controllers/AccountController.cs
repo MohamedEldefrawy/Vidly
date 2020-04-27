@@ -79,10 +79,17 @@ namespace Vidly.BL.Controllers
             }
 
             var loggedUser = UserManager.FindByEmailAsync(model.Email);
+            SignInStatus result;
 
+            if (loggedUser.Result != null)
+            {
+                result = await SignInManager.PasswordSignInAsync(loggedUser.Result.UserName, model.Password,
+                    model.RememberMe, shouldLockout: false);
+            }
+            else
+                result = SignInStatus.Failure;
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(loggedUser.Result.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
