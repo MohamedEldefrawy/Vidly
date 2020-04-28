@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -19,6 +21,13 @@ namespace Vidly.BL.Domain
         [MaxLength(15)]
         [Display(Name = "Phone Number")]
         public override string PhoneNumber { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        [DataType("nvarchar(max)")]
+        public string ProfilePicturePath { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ProfilePictureFile { get; set; }
 
         public ICollection<Rental> Rentals { get; set; }
 

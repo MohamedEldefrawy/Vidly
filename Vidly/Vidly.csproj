@@ -226,6 +226,10 @@
     <Compile Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.designer.cs">
       <DependentUpon>202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004271311271_CreateProfilePictureColumnInAspUserTable.cs" />
+    <Compile Include="Migrations\202004271311271_CreateProfilePictureColumnInAspUserTable.designer.cs">
+      <DependentUpon>202004271311271_CreateProfilePictureColumnInAspUserTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -524,6 +528,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Avatar.png" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
@@ -875,6 +880,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.resx">
       <DependentUpon>202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004271311271_CreateProfilePictureColumnInAspUserTable.resx">
+      <DependentUpon>202004271311271_CreateProfilePictureColumnInAspUserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

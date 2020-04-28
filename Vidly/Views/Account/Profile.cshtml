@@ -5,60 +5,76 @@
 }
 
 <h2>Profile Details</h2>
-<div class="form-group">
-    <input style="display: none" id="userId" type="text" disabled="disabled" class="form-control" />
+<div class="row">
+    <div class="form-group col-md-4">
+        <input style="display: none" id="userId" type="text" disabled="disabled" class="form-control" />
 
-    <label>Name</label>
-    <input id="name" type="text" class="form-control" />
+        <label>Name</label>
+        <input id="name" type="text" class="form-control" />
 
-    <label>Email</label>
-    <input id="email" disabled="disabled" type="email" class="form-control" />
+        <label>Email</label>
+        <input id="email" disabled="disabled" type="email" class="form-control" />
 
-    <label>Phone</label>
-    <input id="phone" type="tel" class="form-control" />
+        <label>Phone</label>
+        <input id="phone" type="tel" class="form-control" />
 
-    <label>Driving license</label>
-    <input id="drivingLicense" type="text" class="form-control" />
+        <label>Driving license</label>
+        <input id="drivingLicense" type="text" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <img src="~/Images/Avatar.png" />
+        <input type="file" id="ProfilePic" name="ProfilePic"/>
+    </div>
+
 </div>
+
 <div>
     <button id="btnSave" class="btn btn-primary"> Save</button>
 </div>
 @section scripts{
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var path = window.location.pathname.split('/');
 
             $.ajax({
                 url: "/api/profiles?userName=" + path[path.length - 1],
                 method: "GET"
-            }).done(function (response) {
+            }).done(function(response) {
                 console.log(response);
                 $("#userId").val(response.id);
                 $("#name").val(response.userName);
                 $("#drivingLicense").val(response.drivingLicense);
                 $("#phone").val(response.phoneNumber);
                 $("#email").val(response.email);
-            }).fail(function (response) {
+
+                if (response.profilePicture)
+                    $("#ProfilePic").attr('src', response.profilePicture);
+                 else 
+                    $("#ProfilePic").attr('src',"~/Images/Avatar.png");
+                
+
+            }).fail(function(response) {
                 $("h2").innerHTML = response.message;
             });
 
             $("#btnSave").on("click",
-                function () {
+                function() {
 
                     var data =
                     {
-                        "id":$("#userId").val(),
+                        "id": $("#userId").val(),
                         "userName": $("#name").val(),
-                        "email":$("#email").val(),
+                        "email": $("#email").val(),
                         "phoneNumber": $("#phone").val(),
-                        "drivingLicense": $("#drivingLicense").val()
+                        "drivingLicense": $("#drivingLicense").val(),
+                        "profilePicture":$("#ProfilePic").attr("src").val()
                     };
 
                     $.ajax({
-                        url: '/api/profiles?id='+$("#userId").val(),
+                        url: '/api/profiles?id=' + $("#userId").val(),
                         method: "PUT",
                         contentType: 'application/json',
-                        data: JSON.stringify(data),
+                        data: JSON.stringify(data)
                     });
                 });
         });
