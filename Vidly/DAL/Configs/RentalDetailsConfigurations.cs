@@ -11,9 +11,9 @@ namespace Vidly.DAL.Configs
     {
         public RentalDetailsConfigurations()
         {
-            Property(r => r.quantity)
+            Property(r => r.Quantity)
                 .IsRequired();
-            Property(r => r.unitPrice)
+            Property(r => r.UnitPrice)
                 .IsRequired()
                 .HasColumnType("Decimal").HasPrecision(9,2);
         }

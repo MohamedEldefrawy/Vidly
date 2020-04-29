@@ -32,7 +32,7 @@ INSERT INTO [dbo].[AspNetUsers]
            ,0
            ,'AGMdnCoR3F0wbyXkDVbTOFLG4KoJKHXvbx5ev0KYB/JVNcDfA3a8XtsSGUXZRFfQBQ=='
            ,'af62747d-4775-4dd3-8778-a1036729d763'
-           ,NULL
+           ,'01153779995'
            ,0
            ,0
            ,NULL

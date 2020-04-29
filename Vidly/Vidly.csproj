@@ -202,29 +202,9 @@
     <Compile Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.designer.cs">
       <DependentUpon>202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs" />
-    <Compile Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.designer.cs">
-      <DependentUpon>202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs" />
     <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.designer.cs">
       <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.cs" />
-    <Compile Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.designer.cs">
-      <DependentUpon>202003031748039_AddReturnDateColumnTORentTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs" />
-    <Compile Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.designer.cs">
-      <DependentUpon>202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003071455190_changeEmployeeIDDataTypeInentalsTable.cs" />
-    <Compile Include="Migrations\202003071455190_changeEmployeeIDDataTypeInentalsTable.designer.cs">
-      <DependentUpon>202003071455190_changeEmployeeIDDataTypeInentalsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs" />
-    <Compile Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.designer.cs">
-      <DependentUpon>202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -858,23 +838,8 @@
     <EmbeddedResource Include="Migrations\202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.resx">
       <DependentUpon>202003011317475_AddDrivingLicenseAndPhoneNumberToUserProfileData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003031603380_CreateEmployeeTableAndRentalOperationTabels.resx">
-      <DependentUpon>202003031603380_CreateEmployeeTableAndRentalOperationTabels.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.resx">
       <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003031748039_AddReturnDateColumnTORentTable.resx">
-      <DependentUpon>202003031748039_AddReturnDateColumnTORentTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.resx">
-      <DependentUpon>202003051548468_DeleteEmployeeTableAndMakeApplicationUserInstead.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003071455190_changeEmployeeIDDataTypeInentalsTable.resx">
-      <DependentUpon>202003071455190_changeEmployeeIDDataTypeInentalsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.resx">
-      <DependentUpon>202003071546443_ChangeForiegnKeyFromUser_IDToEmployeeIDINREntalsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

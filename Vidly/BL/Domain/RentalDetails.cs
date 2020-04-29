@@ -11,9 +11,9 @@ namespace Vidly.BL.Domain
         public int RentalID { get; set; }
         public int MovieID { get; set; }
 
-        public decimal unitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
 
         public Rental Rental { get; set; }
         public Movie Movie { get; set; }
