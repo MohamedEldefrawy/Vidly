@@ -206,6 +206,10 @@
     <Compile Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.designer.cs">
       <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004292243541_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202004292243541_UpdateDatabase.designer.cs">
+      <DependentUpon>202004292243541_UpdateDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -840,6 +844,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.resx">
       <DependentUpon>202003031640421_ChangeRentalEmployeeRentalDetailsConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004292243541_UpdateDatabase.resx">
+      <DependentUpon>202004292243541_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
