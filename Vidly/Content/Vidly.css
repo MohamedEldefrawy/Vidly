@@ -100,3 +100,10 @@
     color: red;
     visibility: hidden;
 }
+
+#userImage {
+    width: 200px;
+    height: 220px;
+    padding-top: 24px;
+    margin-bottom:5px;
+}

@@ -22,8 +22,8 @@
         <input id="drivingLicense" type="text" class="form-control" />
     </div>
     <div class="col-md-3">
-        <img src="~/Images/Avatar.png" />
-        <input type="file" id="ProfilePic" name="ProfilePic"/>
+        <img name="userImage" id="userImage" src="~/Images/Avatar.png" />
+        <input type="file" id="btnProfilePic" name="btnProfilePic" />
     </div>
 
 </div>
@@ -33,49 +33,88 @@
 </div>
 @section scripts{
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var path = window.location.pathname.split('/');
+            var finalProfilePicPath;
+
+            // Show selected image before uploading it
+            function ReadImage(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#userImage").attr("src", e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#btnProfilePic").on('change', function () {
+                ReadImage(this);
+            });
 
             $.ajax({
                 url: "/api/profiles?userName=" + path[path.length - 1],
                 method: "GET"
-            }).done(function(response) {
-                console.log(response);
+            }).done(function (response) {
                 $("#userId").val(response.id);
                 $("#name").val(response.userName);
                 $("#drivingLicense").val(response.drivingLicense);
                 $("#phone").val(response.phoneNumber);
                 $("#email").val(response.email);
 
-                if (response.profilePicture)
-                    $("#ProfilePic").attr('src', response.profilePicture);
-                 else 
-                    $("#ProfilePic").attr('src',"~/Images/Avatar.png");
-                
+                if (response.profilePicturePath)
+                    $("#userImage").attr('src', response.profilePicturePath);
 
-            }).fail(function(response) {
+                else
+                    $("#userImage").attr('src', "~/Images/Avatar.png");
+
+
+            }).fail(function (response) {
                 $("h2").innerHTML = response.message;
             });
 
             $("#btnSave").on("click",
-                function() {
+                function () {
+                    var ImageData = new FormData();
+                    ImageData.append('file', $('#btnProfilePic')[0].files[0]);
 
-                    var data =
-                    {
-                        "id": $("#userId").val(),
-                        "userName": $("#name").val(),
-                        "email": $("#email").val(),
-                        "phoneNumber": $("#phone").val(),
-                        "drivingLicense": $("#drivingLicense").val(),
-                        "profilePicture":$("#ProfilePic").attr("src").val()
-                    };
 
                     $.ajax({
-                        url: '/api/profiles?id=' + $("#userId").val(),
-                        method: "PUT",
-                        contentType: 'application/json',
-                        data: JSON.stringify(data)
+                        url: "/api/profiles",
+                        data: ImageData,
+                        method: "POST",
+                        enctype: 'multipart/form-data',
+                        processData: false,
+                        contentType: false
+                    }).done(function (response) {
+                        var index = response.indexOf("Images");
+                        finalProfilePicPath = response.substr(index - 1);
+                        console.log(finalProfilePicPath);
+                        $("#userImage").attr('src', finalProfilePicPath);
+
+                    }).fail(function () {
+                        $('#userImage').attr('src', ' "~/Images/Avatar.png"');
+                        console.log("upload failed");
                     });
+
+                    setTimeout(function () {
+
+                        var data =
+                        {
+                            "id": $("#userId").val(),
+                            "userName": $("#name").val(),
+                            "email": $("#email").val(),
+                            "phoneNumber": $("#phone").val(),
+                            "drivingLicense": $("#drivingLicense").val(),
+                            "profilePicturePath": finalProfilePicPath
+                        };
+
+                        $.ajax({
+                            url: '/api/profiles?id=' + $("#userId").val(),
+                            method: "PUT",
+                            contentType: 'application/json',
+                            data: JSON.stringify(data)
+                        });
+                    }, 1000)
                 });
         });
     </script>

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Vidly.BL.Domain;
 using Vidly.BL.DTOs;
 using Vidly.DAL;
 using Vidly.DAL.UOW;
-using System.Data.Entity;
-
+using System.IO;
 namespace Vidly.BL.APIs
 {
     public class ProfilesController : ApiController
@@ -20,7 +17,7 @@ namespace Vidly.BL.APIs
         [HttpGet]
         public IHttpActionResult GetProfile(string userName)
         {
-            var selectedUser = UOW.UserRepository.Find(u => u.UserName == userName, ChildrenOfEntities.NoChildren)
+            var selectedUser = UOW.UserRepository.Find(u => u.UserName == userName)
                 .SingleOrDefault();
 
             if (selectedUser == null)
@@ -48,7 +45,7 @@ namespace Vidly.BL.APIs
                 return NotFound();
             }
 
-            ObjectMapper.Mapper.Map<UserDTO, ApplicationUser>(userDto, selectedUser);
+            ObjectMapper.Mapper.Map(userDto, selectedUser);
 
             selectedUser.Id = id;
 
@@ -57,6 +54,30 @@ namespace Vidly.BL.APIs
             UOW.Dispose();
 
             return Ok();
+        }
+
+        [HttpPost]
+        public IHttpActionResult UplaodProfilePicture()
+        {
+            var file = HttpContext.Current.Request.Files.Count > 0 ?
+       HttpContext.Current.Request.Files[0] : null;
+            string fileName;
+            if (file != null && file.ContentLength > 0)
+            {
+                Uri baseUri = new Uri("~/Images");
+                fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                //fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/"), fileName);
+                Uri myUri = new Uri(baseUri, fileName);
+                fileName = myUri.ToString();
+                file.SaveAs(fileName);
+            }
+
+            else
+                fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/"), "Avatar.png");
+
+            return Ok(fileName);
         }
     }
 }

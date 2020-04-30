@@ -26,9 +26,6 @@ namespace Vidly.BL.Domain
         [DataType("nvarchar(max)")]
         public string ProfilePicturePath { get; set; }
 
-        [NotMapped]
-        public HttpPostedFileBase ProfilePictureFile { get; set; }
-
         public ICollection<Rental> Rentals { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
